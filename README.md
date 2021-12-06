@@ -1,2 +1,42 @@
-# ecommerce-php-project
-5th project with my great group in OCA
+# e-commerce
+
+## Synopsis
+This Project is an E_commerce website that sells clothes and accessories for women, men, and kids.
+
+## Contributors
+1. Ahmad Abutoimah (Project Owner).
+2. Dania Darweesh.
+3. Haitham Assoli (Scrum Master).
+4. Farah Mango.
+5. Sarah Hasan.
+
+## Technologies
+1. HTML5.
+2. CSS3.
+3. Javascript.
+4. Bootstrap.
+5. PHP.
+6. MYSQL
+
+## Tools
+1. Google Chrome.
+2. Windows 10.
+3. Visual Studio Code.
+4. Git & Github.
+5. XMAPP
+6. Zoom
+
+## Installation
+Download Xampp on your computer to view this project.
+
+## References
+1. PHP Documentation: www.php.net/docs.php.
+2. W3Schools PHP Tutorial: www.w3schools.com/php.
+3. Udemy PHP online course.
+
+## Wireframe
+
+## Mockup
+
+## Trello
+https://trello.com/b/Qubac5dP/php-project
