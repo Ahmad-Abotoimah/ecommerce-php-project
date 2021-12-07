@@ -249,11 +249,14 @@ if (isset($_GET["id"])) {
 									<div class="size-204 respon6-next">
 										<div class="rs1-select2 bor8 bg0">
 											<select class="js-select2" name="size">
-												<option value="0">Choose an option</option>
-												<option value="S">Size S</option>
-												<option value="M">Size M</option>
-												<option value="L">Size L</option>
-												<option value="XL">Size XL</option>
+												<?php
+												$sizeStr = $row['product_size'];
+												echo $sizeStr;
+												$sizeArr = explode(',', $sizeStr);
+												foreach ($sizeArr as $size) {
+												?>
+													<option value="<?php echo $size; ?>"><?php echo $size; ?></option>
+												<?php } ?>
 											</select>
 											<div class="dropDownSelect2"></div>
 										</div>
@@ -322,7 +325,7 @@ if (isset($_GET["id"])) {
 						</li>
 
 						<li class="nav-item p-b-10">
-							<a class="nav-link" data-toggle="tab" href="#reviews" role="tab">Reviews (1)</a>
+							<a class="nav-link" data-toggle="tab" href="#reviews" role="tab">Reviews</a>
 						</li>
 					</ul>
 
