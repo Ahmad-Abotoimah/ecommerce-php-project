@@ -190,6 +190,20 @@ include "./admin/includes/connect.php";
 			$result = mysqli_query($conn, $sql);
 			$product = mysqli_fetch_all($result, MYSQLI_ASSOC);
 		}
+		if (isset($_GET["load_more"])) {
+			$sql = "SELECT * FROM products";
+			$result = mysqli_query($conn, $sql);
+			$product = mysqli_fetch_all($result, MYSQLI_ASSOC);
+		} else {
+			$sql = "SELECT * FROM (
+				SELECT *
+				FROM `products`
+				ORDER BY `product_id` DESC
+				LIMIT 12
+			) AS `products` ORDER by product_id ASC";
+			$result = mysqli_query($conn, $sql);
+			$product = mysqli_fetch_all($result, MYSQLI_ASSOC);
+		}
 		?>
 
 		<div class="row isotope-grid">
@@ -200,25 +214,25 @@ include "./admin/includes/connect.php";
 			?>
 
 				<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item <?php
-																																		if ($val["product_tag"] == "women") {
-																																			echo "women";
-																																		}
-																																		if ($val["product_tag"] == "watches") {
-																																			echo "watches";
-																																		}
-																																		if ($val["product_tag"] == "shoes") {
-																																			echo "shoes";
-																																		}
-																																		if ($val["product_tag"] == "sales") {
-																																			echo "sales";
-																																		}
-																																		if ($val["product_tag"] == "new") {
-																																			echo "new";
-																																		}
-																																		if ($val["product_tag"] == "men") {
-																																			echo "men";
-																																		}
-																																		?>">
+																			if ($val["product_tag"] == "women") {
+																				echo "women";
+																			}
+																			if ($val["product_tag"] == "watches") {
+																				echo "watches";
+																			}
+																			if ($val["product_tag"] == "shoes") {
+																				echo "shoes";
+																			}
+																			if ($val["product_tag"] == "sales") {
+																				echo "sales";
+																			}
+																			if ($val["product_tag"] == "new") {
+																				echo "new";
+																			}
+																			if ($val["product_tag"] == "men") {
+																				echo "men";
+																			}
+																			?>">
 					<!-- Block2 -->
 					<div class="block2">
 						<a href="product-detail.php?id=<?php echo $val['product_id']; ?>">
@@ -245,15 +259,16 @@ include "./admin/includes/connect.php";
 
 
 		<!-- Load more -->
-		<div class="flex-c-m flex-w w-full p-t-45">
-			<a href="#" class="flex-c-m stext-101 cl5 size-103 bg2 bor1 hov-btn1 p-lr-15 trans-04">
-				Load More
-			</a>
-		</div>
+		<?php if (!isset($_GET["load_more"])) { ?>
+
+			<div class="flex-c-m flex-w w-full p-t-45" id="load_more">
+				<a href="shop.php?load_more" class="flex-c-m stext-101 cl5 size-103 bg2 bor1 hov-btn1 p-lr-15 trans-04" id="anchor">
+					Load More
+				</a>
+			</div>
+		<?php } ?>
 	</div>
 </div>
-
-
 </body>
 
 </html>
