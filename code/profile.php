@@ -35,7 +35,7 @@ if (isset($_SESSION['type']) && $_SESSION['type'] == 0) {
 					<div class="col-md-6 ml-auto mr-auto">
 						<div class="profile" style="text-align: center;">
 							<div class="avatar">
-								<img src="<?php echo $user[0]['user_image'] ?>" alt="photo" style="margin-top:-90px">
+								<img src="<?php echo $user[0]['user_image'] ?>" alt="photo" style="margin-top:-90px; border-radius: 50%; width : 180px; height: 180px;">
 							</div>
 							<div class="name">
 								<h3 class="title"><?php echo $user[0]['user_name'] ?></h3>
