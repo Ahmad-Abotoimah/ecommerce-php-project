@@ -149,6 +149,12 @@ include "./admin/includes/connect.php";
 				$sql = "SELECT * FROM products ORDER BY product_price DESC";
 				$result = mysqli_query($conn, $sql);
 				$product = mysqli_fetch_all($result, MYSQLI_ASSOC);
+			} //=================================================
+			if ($_GET["sort"] == "category") {
+				$id = $_GET["id"];
+				$sql = "SELECT * FROM products WHERE product_categorie_id=$id";
+				$result = mysqli_query($conn, $sql);
+				$product = mysqli_fetch_all($result, MYSQLI_ASSOC);
 			}
 			if ($_GET["sort"] == "low") {
 				$sql = "SELECT * FROM products ORDER BY product_price";
@@ -238,15 +244,8 @@ include "./admin/includes/connect.php";
 									</a>
 
 									<span class="stext-105 cl3">
-										<?php echo $val['product_price']; ?>
+										<?php echo '$' . $val['product_price']; ?>
 									</span>
-								</div>
-
-								<div class="block2-txt-child2 flex-r p-t-3">
-									<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-										<img class="icon-heart1 dis-block trans-04" src="images/icons/icon-heart-01.png" alt="ICON">
-										<img class="icon-heart2 dis-block trans-04 ab-t-l" src="images/icons/icon-heart-02.png" alt="ICON">
-									</a>
 								</div>
 							</div>
 						</a>

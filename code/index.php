@@ -131,7 +131,7 @@ $cat  = mysqli_fetch_all($result, MYSQLI_ASSOC);
 					<div class="block1 wrap-pic-w">
 						<img src="<?php echo 'admin/' . $val['category_image'];  ?>" alt="IMG-BANNER">
 
-						<a href="shop.php" class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
+						<a href="shop.php?sort=category&id=<?php echo $val['category_id'] ?>" class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
 							<div class="block1-txt-child1 flex-col-l">
 								<span class="block1-name ltext-102 trans-04 p-b-8">
 									<?php echo $val['category_name'];  ?>
@@ -236,13 +236,6 @@ $cat  = mysqli_fetch_all($result, MYSQLI_ASSOC);
 									<?php echo "$" . $val["product_price"]   ?>
 								</span>
 							</div>
-
-							<div class="block2-txt-child2 flex-r p-t-3">
-								<a href="" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-									<img class="icon-heart1 dis-block trans-04" src="images/icons/icon-heart-01.png" alt="ICON">
-									<img class="icon-heart2 dis-block trans-04 ab-t-l" src="images/icons/icon-heart-02.png" alt="ICON">
-								</a>
-							</div>
 						</div>
 
 					</div>
@@ -302,12 +295,6 @@ $cat  = mysqli_fetch_all($result, MYSQLI_ASSOC);
 								</span>
 							</div>
 
-							<div class="block2-txt-child2 flex-r p-t-3">
-								<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-									<img class="icon-heart1 dis-block trans-04" src="images/icons/icon-heart-01.png" alt="ICON">
-									<img class="icon-heart2 dis-block trans-04 ab-t-l" src="images/icons/icon-heart-02.png" alt="ICON">
-								</a>
-							</div>
 						</div>
 
 					</div>
