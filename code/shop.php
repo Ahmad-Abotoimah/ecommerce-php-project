@@ -228,7 +228,7 @@ include "./admin/includes/connect.php";
 					<div class="block2">
 						<a href="product-detail.php?id=<?php echo $val['product_id']; ?>">
 							<div class="block2-pic hov-img0">
-								<img src="<?php echo $val['product_main_image']; ?>" alt="IMG-PRODUCT">
+								<img src="<?php echo 'admin/' . $val['product_main_image']; ?>" alt="IMG-PRODUCT">
 							</div>
 
 							<div class="block2-txt flex-w flex-t p-t-14">

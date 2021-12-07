@@ -237,7 +237,7 @@ include "./admin/includes/connect.php";
 						foreach ($_SESSION['cart'] as $key => $value) { ?>
 							<li class="header-cart-item flex-w flex-t m-b-12">
 								<div class="header-cart-item-img">
-									<img src="<?php echo $value['product_image']; ?>" alt="IMG">
+									<img src="<?php echo 'admin/' . $value['product_image']; ?>" alt="IMG">
 								</div>
 
 								<div class="header-cart-item-txt p-t-8">

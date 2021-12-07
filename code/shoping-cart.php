@@ -71,7 +71,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 									<tr class="table_row">
 										<td class="column-1">
 											<div class="how-itemcart1">
-												<img src="<?php echo $value['product_image']; ?>" alt="IMG">
+												<img src="<?php echo 'admin/' . $value['product_image']; ?>" alt="IMG">
 											</div>
 										</td>
 										<td class="column-2"><?php echo $value['product_name'] .  " " . $value['size']; ?></td>
