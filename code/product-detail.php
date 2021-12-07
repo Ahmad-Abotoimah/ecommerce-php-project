@@ -133,7 +133,7 @@ if (isset($_GET["id"])) {
 
 
 <!-- breadcrumb -->
-<div class="container mt-5">
+<div class="container">
 	<div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">
 		<a href="index.php" class="stext-109 cl8 hov-cl1 trans-04">
 			Home
@@ -253,14 +253,17 @@ if (isset($_GET["id"])) {
 									<div class="size-204 respon6-next">
 										<div class="rs1-select2 bor8 bg0">
 											<select class="js-select2" name="size">
+												<option value="<?php echo $row['product_size'] == NULL ? "-" : 0; ?>" <?php echo $row['product_size'] == NULL ? "disabled" : ''; ?>>Choose an option</option>
 												<?php
-												$sizeStr = $row['product_size'];
-												echo $sizeStr;
-												$sizeArr = explode(',', $sizeStr);
-												foreach ($sizeArr as $size) {
+												if ($row['product_size'] != NULL) {
+													$sizeStr = $row['product_size'];
+													echo $sizeStr;
+													$sizeArr = explode(',', $sizeStr);
+													foreach ($sizeArr as $size) {
 												?>
-													<option value="<?php echo $size; ?>"><?php echo $size; ?></option>
-												<?php } ?>
+														<option value="<?php echo $size; ?>"><?php echo $size; ?></option>
+												<?php }
+												} ?>
 											</select>
 											<div class="dropDownSelect2"></div>
 										</div>
