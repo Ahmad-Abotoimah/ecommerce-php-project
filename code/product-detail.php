@@ -45,7 +45,7 @@ if (isset($_GET["id"])) {
 	$comments  = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
 	//select related
-	$sql = "SELECT * FROM products WHERE product_tag='related'";
+	$sql = "SELECT * FROM products WHERE product_tag='sales'";
 	$result = mysqli_query($conn, $sql);
 	$related  = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
@@ -231,8 +231,12 @@ if (isset($_GET["id"])) {
 							<h4 class="mtext-105 cl2 js-name-detail p-b-14">
 							</h4>
 
+							<h4 class="mtext-106 cl2">
+								<?php echo $row["product_name"];  ?>
+							</h4>
+							<br>
 							<span class="mtext-106 cl2">
-								<?php echo $row["product_price"];  ?>
+								<?php echo '$' . $row["product_price"];  ?>
 							</span>
 
 							<p class="stext-102 cl3 p-t-23">
@@ -278,6 +282,8 @@ if (isset($_GET["id"])) {
 											<input type="hidden" name="product_name" value="<?php echo $product[0]['product_name']; ?>">
 											<input type="hidden" name="product_image" value="<?php echo $product[0]['product_main_image']; ?>">
 											<input type="hidden" name="product_price" value="<?php echo $row["product_price"]; ?>">
+											<br>
+											<br>
 											<button type="submit" name="add_to_cart" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
 												Add to cart
 											</button>
@@ -287,13 +293,7 @@ if (isset($_GET["id"])) {
 							</div>
 
 							<!--  -->
-							<div class="flex-w flex-m p-l-100 p-t-40 respon7">
-								<div class="flex-m bor9 p-r-10 m-r-11">
-									<a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 js-addwish-detail tooltip100" data-tooltip="Add to Wishlist">
-										<i class="zmdi zmdi-favorite"></i>
-									</a>
-								</div>
-
+							<div class="flex-w ml-5 flex-m p-l-100 p-t-40 respon7">
 								<a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100" data-tooltip="Facebook">
 									<i class="fa fa-facebook"></i>
 								</a>
@@ -322,7 +322,7 @@ if (isset($_GET["id"])) {
 						</li>
 
 						<li class="nav-item p-b-10">
-							<a class="nav-link" data-toggle="tab" href="#reviews" role="tab">Reviews (1)</a>
+							<a class="nav-link" data-toggle="tab" href="#reviews" role="tab">Reviews (<?php print_r(count($comments)); ?>)</a>
 						</li>
 					</ul>
 
@@ -433,19 +433,6 @@ if (isset($_GET["id"])) {
 				</div>
 			</div>
 		</div>
-		</div>
-		</div>
-		</div>
-
-		<div class="bg6 flex-c-m flex-w size-302 m-t-73 p-tb-15">
-			<span class="stext-107 cl6 p-lr-25">
-				SKU: JAK-01
-			</span>
-
-			<span class="stext-107 cl6 p-lr-25">
-				Categories: Jacket, Men
-			</span>
-		</div>
 	</section>
 
 
@@ -483,13 +470,6 @@ if (isset($_GET["id"])) {
 										<span class="stext-105 cl3">
 											<?php echo '$' . $row["product_price"];  ?>
 										</span>
-									</div>
-
-									<div class="block2-txt-child2 flex-r p-t-3">
-										<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-											<img class="icon-heart1 dis-block trans-04" src="images/icons/icon-heart-01.png" alt="ICON">
-											<img class="icon-heart2 dis-block trans-04 ab-t-l" src="images/icons/icon-heart-02.png" alt="ICON">
-										</a>
 									</div>
 								</div>
 							</div>
