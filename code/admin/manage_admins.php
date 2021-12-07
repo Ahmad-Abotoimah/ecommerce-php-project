@@ -1,9 +1,11 @@
 <?php
-if (!isset($_SESSION["type"]) || $_SESSION["type"] == 0) {
+ob_start();
+include "./includes/header.php"; ?>
+<?php
+if (!isset($_SESSION["type"]) || $_SESSION["type"] != 2) {
   header('location:../index.php');
 }
 ?>
-<?php include "./includes/header.php"; ?>
 <?php
 $admin_name = "";
 $admin_email = "";
@@ -227,11 +229,9 @@ if (isset($_GET['do'])) {
                   <div class="form-group has-icon-left">
                     <div class="position-relative row justify-content-center align-items-center d-flex">
 
-                      <select name="admin_type" class="form-control col-9 mb-2" value="<?php if ($do == "edit") {
-                                                                                          echo $row['admin_type'];
-                                                                                        } ?>" style="border: 1px solid #dce7f1 !important;">
-                        <option value="0">Admin</option>
-                        <option value="1">SuperAdmin </option>
+                      <select name="admin_type" class="form-control col-9 mb-2" style="border: 1px solid #dce7f1 !important;">
+                        <option value="0" <?php echo $row['admin_type'] == 0 ? "selected" : ""; ?>>Admin</option>
+                        <option value="1" <?php echo $row['admin_type'] == 1 ? "selected" : ""; ?>>SuperAdmin </option>
                       </select>
 
                       <div class="form-control-icon col-3">
@@ -328,7 +328,7 @@ if (!isset($_GET['do'])) { ?>
                       </div>
                     </td>
                     <td><span class="badge-pending"><?php echo isset($admin['admin_password']) ? $admin['admin_password'] : ''; ?> </span></td>
-                    <td><?php echo isset($admin['admin_type']) ? $admin['admin_type'] : ''; ?></td>
+                    <td><?php echo isset($admin['admin_type']) && $admin['admin_type'] == 0 ? "Admin" : "Super Admin"; ?></td>
                     <td>
                       <div class="table-data-feature">
                         <button class="btn btn-success" title="edit">
@@ -350,4 +350,6 @@ if (!isset($_GET['do'])) { ?>
   </main>
 <?php } ?>
 
-<?php include "./includes/footer.php"; ?>
+
+<?php include "./includes/footer.php";
+ob_end_flush(); ?>

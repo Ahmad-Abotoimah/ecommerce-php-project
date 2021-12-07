@@ -1,9 +1,8 @@
 <?php
-if ($_SERVER['REQUEST_METHOD'] == 'GET' && realpath(__FILE__) == realpath($_SERVER['SCRIPT_FILENAME'])) {
-    header('location:index.php');
-} ?>
-<?php
 include "./admin/includes/connect.php";
+if (isset($_SESSION["type"])) {
+    header('location:../index.php');
+}
 ?>
 <?php
 function redirect($url)
@@ -156,6 +155,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <button id="signUp_insignup_btn" type="submit" name="btn">Register
                     <i class="zmdi zmdi-arrow-right"></i>
                 </button>
+                <div class="dont">
+                    <span class="dont">Already have an account? <a class="ms-1 regster-href" href="sign_in.php">Login</a></span>
+                </div>
             </form>
         </div>
     </div>

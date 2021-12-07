@@ -1,11 +1,11 @@
 <?php
+ob_start();
+include "./includes/header.php";
+
 if (!isset($_SESSION["type"]) || $_SESSION["type"] == 0) {
   header('location:../index.php');
 }
-?>
-<?php
-ob_start();
-include "./includes/header.php";
+
 // select all comments
 $sql = "SELECT * FROM categories";
 $result = mysqli_query($conn, $sql);
@@ -189,5 +189,6 @@ if (isset($_GET["do"])) {
   </div>
 <?php } ?>
 <!-- end table -->
+
 <?php include "./includes/footer.php";
 ob_end_flush(); ?>

@@ -30,6 +30,7 @@ if (isset($_SESSION["type"])) {
   <link rel="stylesheet" href="assets/vendors/perfect-scrollbar/perfect-scrollbar.css">
   <link rel="stylesheet" href="assets/vendors/bootstrap-icons/bootstrap-icons.css">
   <link rel="shortcut icon" href="./img/svg/logo.svg" type="image/x-icon">
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
   <!-- Custom styles -->
   <link rel="stylesheet" href="./assets/css/style.min.css">
 </head>
@@ -139,7 +140,9 @@ if (isset($_SESSION["type"])) {
             </button>
             <div class="notification-wrapper">
               <button class="gray-circle-btn dropdown-btn" title="To messages" type="button">
-                <span class="sr-only"></span>
+
+                <!-- <span class="sr-only"></span> -->
+
                 <?php
                 $sql = "SELECT * FROM comments";
                 $result = mysqli_query($conn, $sql);
@@ -147,10 +150,12 @@ if (isset($_SESSION["type"])) {
                 if ($result->num_rows == 0) {
                 ?>
                   <span class="icon notification " aria-hidden="true"></span>
+                  <i class="far fa-bell"></i>
               </button>
             </div>
           <?php } else {
-                  echo '<span class="icon notification active " aria-hidden="true"></span>
+                  echo '<span class=""><i class="notification mt-2 active far fa-bell"></i></span>
+
                   </button>
                   </div>';
                 } ?>

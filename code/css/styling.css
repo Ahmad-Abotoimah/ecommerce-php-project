@@ -365,10 +365,10 @@
      /* Edit profile*/
      
      .ck {
-         margin-left: 210px;
+         margin-left: 208px;
          width: fit-content;
          height: 100px;
-         margin-top: -130px;
+         margin-top: -50px;
      }
      
      .ii {
@@ -380,7 +380,7 @@
      }
      
      .bc {
-         background-color: blueviolet;
+         background-color:#717fe0  ;
          color: white;
          width: 70px;
          height: 50px;

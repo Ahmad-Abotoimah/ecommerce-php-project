@@ -1,9 +1,8 @@
-<?php
-if (!isset($_SESSION["type"]) || $_SESSION["type"] == 0) {
+<?php include "./includes/header.php";
+
+if (!isset($_SESSION["type"]) || $_SESSION["type"] != 2) {
   header('location:../index.php');
 }
-?>
-<?php include "./includes/header.php";
 ?>
 
 <?php
@@ -335,6 +334,7 @@ if (!isset($_GET['do'])) { ?>
     </div>
   </main>
 <?php } ?>
+
 
 <!-- end table -->
 <?php include "./includes/footer.php"; ?>

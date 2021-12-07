@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 06, 2021 at 01:05 AM
+-- Generation Time: Dec 06, 2021 at 08:27 PM
 -- Server version: 10.4.21-MariaDB
--- PHP Version: 8.0.12
+-- PHP Version: 7.3.31
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -61,11 +61,11 @@ CREATE TABLE `categories` (
 --
 
 INSERT INTO `categories` (`category_id`, `category_name`, `category_description`, `category_image`) VALUES
-(5, 'Women', 'New Trend', 'images/women.jpg'),
-(6, 'Men', 'New Trend ', 'images/man.jpg'),
-(8, 'Bags', 'Spring 2018', 'images/bag.jpg'),
-(9, 'Accessories', 'Spring 2018', 'images/belt.jpg'),
-(10, 'Accessories', 'wotch', 'images/whatch.jpg');
+(11, 'women', 'New Trend', 'uploads/category_image/IMG-61ae3593dc0d1banner-04.jpg'),
+(12, 'Men', 'New Trend', 'uploads/category_image/IMG-61ae359cbbe3ebanner-05.jpg'),
+(13, 'Bags', 'Spring 2018', 'uploads/category_image/IMG-61ae3574e149fbag.jpg'),
+(14, 'Shoes', 'New Trend', 'uploads/category_image/IMG-61ae3749da7e5banner-09.jpg'),
+(15, 'Accessories', 'New Trend', 'uploads/category_image/IMG-61ae3637d7041whatch.jpg');
 
 -- --------------------------------------------------------
 
@@ -79,7 +79,8 @@ CREATE TABLE `comments` (
   `comment_image` varchar(255) DEFAULT NULL,
   `comment_date` timestamp NOT NULL DEFAULT current_timestamp(),
   `comment_product_id` int(11) NOT NULL,
-  `comment_user_id` int(11) NOT NULL
+  `comment_user_id` int(11) NOT NULL,
+  `comment_rate` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -111,16 +112,15 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`product_id`, `product_name`, `product_description`, `product_price`, `product_quantity`, `product_rate`, `product_main_image`, `product_desc_image_1`, `product_desc_image_2`, `product_desc_image_3`, `product_tag`, `product_categorie_id`, `product_nd_color_image`, `product_thd_color_image`, `product_fourth_color_image`) VALUES
-(10, 't-shirts', 'summer', '20', 4, NULL, 'images/product-01.jpg', NULL, NULL, NULL, 'sales', 5, NULL, NULL, NULL),
-(11, 'jeans', 'summer', '30', 3, NULL, 'images/product-02.jpg', NULL, NULL, NULL, 'sales', 5, NULL, NULL, NULL),
-(12, 'jeans', 'summmer', '10', 3, NULL, 'images/product-03.jpg', NULL, NULL, NULL, 'sales', 6, NULL, NULL, NULL),
-(13, 'Couat', 'Winter', '50', 2, NULL, 'images/product-04.jpg', NULL, NULL, NULL, 'sales', 5, NULL, NULL, NULL),
-(14, 't-shirts', 'summer', '34', 44, NULL, 'images/product-05.jpg', NULL, NULL, NULL, 'new', 5, NULL, NULL, NULL),
-(15, 'wotch', 'accessorise', '23', 3, NULL, 'images/product-06.jpg', NULL, NULL, NULL, 'new', 9, NULL, NULL, NULL),
-(16, 't-shirt', 'summer', '39', 3, NULL, 'images/product-01.jpg', NULL, NULL, NULL, 'women', 5, NULL, NULL, NULL),
-(17, 'jeans', 'winter', '33', 3, NULL, 'images/product-03.jpg', NULL, NULL, NULL, 'men', 6, NULL, NULL, NULL),
-(18, 'shoes', 'spoet', '66', 8, NULL, 'images/product-09.jpg', NULL, NULL, NULL, 'shoes', 6, NULL, NULL, NULL),
-(20, 'wotch', 'wotches', '99', 9, NULL, 'images/product-06.jpg', NULL, NULL, NULL, 'watches', 9, NULL, NULL, NULL);
+(24, 'Sera Relaxed Tee', 'Aenean sit amet gravida nisi. Nam fermentum est felis, quis feugiat nunc fringilla sit amet. Ut in blandit ipsum. Quisque luctus dui at ante aliquet, in hendrerit lectus interdum. Morbi elementum sapien rhoncus pretium maximus. Nulla lectus enim, cursus e', '22', 333, NULL, 'uploads/61ae3b75f3257women-00.jpg', 'uploads/61ae3b75f3267women-01.jpg', 'uploads/61ae3b75f326cwomen-02.jpg', 'uploads/61ae3b75f3272women-03.jpg', 'new', 11, 'uploads/61ae3b75f326cwomen-02.jpg', 'uploads/61ae3b75f3272women-03.jpg', 'uploads/61ae3b75f326cwomen-02.jpg'),
+(25, 'Solana Relaxed Lounge Shirt', 'Aenean sit amet gravida nisi. Nam fermentum est felis, quis feugiat nunc fringilla sit amet. Ut in blandit ipsum. Quisque luctus dui at ante aliquet, in hendrerit lectus interdum. Morbi elementum sapien rhoncus pretium maximus. Nulla lectus enim, cursus e', '44', 333, NULL, 'uploads/61ae3eacd28d6women-10.jpg', 'uploads/61ae3eacd28e5women-11.jpg', 'uploads/61ae3eacd28ebwomen-12.jpg', 'uploads/61ae3eacd28f1women-13.jpg', 'sales', 11, 'uploads/61ae3eacd28ebwomen-12.jpg\n', 'uploads/61ae3eacd28f1women-13.jpg\n', 'uploads/61ae3eacd28e5women-11.jpg\n'),
+(33, 'Gabbie Panelled Flare Skirt', 'Aenean sit amet gravida nisi. Nam fermentum est felis, quis feugiat nunc fringilla sit amet. Ut in blandit ipsum. Quisque luctus dui at ante aliquet, in hendrerit lectus interdum. Morbi elementum sapien rhoncus pretium maximus. Nulla lectus enim, cursus e', '21', 444, NULL, 'uploads/61ae57839a5ddacs-20.jpg', 'uploads/61ae57839a5e9acs-21.jpg', 'uploads/61ae57839a5efacs-22.jpg', 'uploads/61ae57839a5f5acs-20.jpg', 'new', 15, 'uploads/61ae57839a5fbacs-21.jpg', 'uploads/61ae57839a600acs-22.jpg', 'uploads/61ae57839a607acs-22.jpg'),
+(34, 'Inlay baderafic letter 2 cut off', 'Aenean sit amet gravida nisi. Nam fermentum est felis, quis feugiat nunc fringilla sit amet. Ut in blandit ipsum. Quisque luctus dui at ante aliquet, in hendrerit lectus interdum. Morbi elementum sapien rhoncus pretium maximus. Nulla lectus enim, cursus e', '22', 33, NULL, 'uploads/61ae57feb8aeeacs-30.jpg', 'uploads/61ae57feb8af6acs-31.jpg', 'uploads/61ae57feb8af9acs-32.jpg', 'uploads/61ae57feb8afcacs-33.jpg', 'new', 15, 'uploads/61ae57feb8afeacs-31.jpg', 'uploads/61ae57feb8b01acs-32.jpg', 'uploads/61ae57feb8b03acs-33.jpg'),
+(35, 'Gabbie Panelled Flare ', 'Aenean sit amet gravida nisi. Nam fermentum est felis, quis feugiat nunc fringilla sit amet. Ut in blandit ipsum. Quisque luctus dui at ante aliquet, in hendrerit lectus interdum. Morbi elementum sapien rhoncus pretium maximus. Nulla lectus enim, cursus e', '77', 77, NULL, 'uploads/61ae58ce05ae4bag-70.jpg', 'uploads/61ae58ce05af1bag-71.jpg', 'uploads/61ae58ce05af6bag-72.jpg', 'uploads/61ae58ce05afbbag-72.jpg', 'sales', 13, 'uploads/61ae58ce05b00bag-73.jpg', 'uploads/61ae58ce05b06bag-70.jpg', 'uploads/61ae58ce05b0bbag-71.jpg'),
+(36, 'Gabbie Panelled Flare', 'Aenean sit amet gravida nisi. Nam fermentum est felis, quis feugiat nunc fringilla sit amet. Ut in blandit ipsum. Quisque luctus dui at ante aliquet, in hendrerit lectus interdum. Morbi elementum sapien rhoncus pretium maximus. Nulla lectus enim, cursus e', '82', 32, NULL, 'uploads/61ae591843385bag-00.jpg', 'uploads/61ae591843396bag-01.jpg', 'uploads/61ae59184339bbag-02.jpg', 'uploads/61ae5918433a0bag-00.jpg', 'related', 13, 'uploads/61ae5918433a4bag-01.jpg', 'uploads/61ae5918433a8bag-02.jpg', 'uploads/61ae5918433aebag-00.jpg'),
+(37, 'Gabbie Panelled Flare ', 'Aenean sit amet gravida nisi. Nam fermentum est felis, quis feugiat nunc fringilla sit amet. Ut in blandit ipsum. Quisque luctus dui at ante aliquet, in hendrerit lectus interdum. Morbi elementum sapien rhoncus pretium maximus. Nulla lectus enim, cursus e', '73', 52, NULL, 'uploads/61ae599bc30e1acs-00.jpg', 'uploads/61ae599bc30f0acs-01.jpg', 'uploads/61ae599bc30f3acs-02.jpg', 'uploads/61ae599bc30f5acs-03.jpg', 'accessories', 15, 'uploads/61ae599bc30f8acs-00.jpg', 'uploads/61ae599bc30faacs-01.jpg', 'uploads/61ae599bc3102acs-02.jpg'),
+(38, 'Gabbie Panelled Flare ', 'Aenean sit amet gravida nisi. Nam fermentum est felis, quis feugiat nunc fringilla sit amet. Ut in blandit ipsum. Quisque luctus dui at ante aliquet, in hendrerit lectus interdum. Morbi elementum sapien rhoncus pretium maximus. Nulla lectus enim, cursus e', '88', 55, NULL, 'uploads/61ae59ef382fcmen-00.jpg', 'uploads/61ae59ef3830bmen-01.jpg', 'uploads/61ae59ef3830fmen-02.jpg', 'uploads/61ae59ef38314men-03.jpg', 'new', 12, 'uploads/61ae59ef38317men-00.jpg', 'uploads/61ae59ef3831bmen-03.jpg', 'uploads/61ae59ef3831fmen-02.jpg'),
+(39, 'Gabbie Panelled Flare', 'Aenean sit amet gravida nisi. Nam fermentum est felis, quis feugiat nunc fringilla sit amet. Ut in blandit ipsum. Quisque luctus dui at ante aliquet, in hendrerit lectus interdum. Morbi elementum sapien rhoncus pretium maximus. Nulla lectus enim, cursus e', '88', 66, NULL, 'uploads/61ae5a2ccca66men-50.jpg', 'uploads/61ae5a2ccca6fmen-11.jpg', 'uploads/61ae5a2ccca72men-12.jpg', 'uploads/61ae5a2ccca75men-13.jpg', 'sales', 12, 'uploads/61ae5a2ccca77men-10.jpg', 'uploads/61ae5a2ccca7amen-11.jpg', 'uploads/61ae5a2ccca7dmen-12.jpg');
 
 -- --------------------------------------------------------
 
@@ -229,19 +229,19 @@ ALTER TABLE `admins`
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `comment_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `comment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- AUTO_INCREMENT for table `unique_visitors`

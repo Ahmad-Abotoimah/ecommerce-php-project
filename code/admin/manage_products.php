@@ -1,9 +1,9 @@
 <?php
+include "./includes/header.php";
 if (!isset($_SESSION["type"]) || $_SESSION["type"] == 0) {
   header('location:../index.php');
 }
-?>
-<?php
+
 function redirect($url)
 {
   if (!headers_sent()) {
@@ -20,7 +20,7 @@ function redirect($url)
   }
 }
 //header
-include "./includes/header.php";
+
 //select product from database
 $sql = "SELECT * FROM products INNER JOIN categories ON categories.category_id = products.product_categorie_id";
 $result = mysqli_query($conn, $sql);
@@ -570,5 +570,6 @@ if (!isset($_GET['do'])) {
     </div>
   </main>
 <?php   }  ?>
+
 <!-- end table -->
 <?php include "./includes/footer.php"; ?>

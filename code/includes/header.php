@@ -36,6 +36,7 @@ include "./admin/includes/connect.php";
 	<link rel="stylesheet" type="text/css" href="vendor/MagnificPopup/magnific-popup.css">
 	<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="vendor/perfect-scrollbar/perfect-scrollbar.css">
+	<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
 	<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="css/util.css">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
@@ -105,10 +106,10 @@ include "./admin/includes/connect.php";
 						</div>
 
 						<div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-cart" data-notify="<?php if (isset($_SESSION['cart'])) {
-																																		print_r(count($_SESSION['cart']));
-																																	} else {
-																																		echo 0;
-																																	}; ?>">
+																																																													print_r(count($_SESSION['cart']));
+																																																												} else {
+																																																													echo 0;
+																																																												}; ?>">
 							<i class="zmdi zmdi-shopping-cart"></i>
 						</div>
 
@@ -134,10 +135,10 @@ include "./admin/includes/connect.php";
 				</div> -->
 
 				<div class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti js-show-cart" data-notify="<?php if (isset($_SESSION['cart'])) {
-																																print_r(count($_SESSION['cart']));
-																															} else {
-																																echo 0;
-																															}; ?>">
+																																																											print_r(count($_SESSION['cart']));
+																																																										} else {
+																																																											echo 0;
+																																																										}; ?>">
 					<i class="zmdi zmdi-shopping-cart"></i>
 				</div>
 
@@ -264,7 +265,7 @@ include "./admin/includes/connect.php";
 							View Cart
 						</a>
 
-						<a href="shoping-cart.php" class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-b-10">
+						<a href="checkout.php" class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-b-10">
 							Check Out
 						</a>
 					</div>

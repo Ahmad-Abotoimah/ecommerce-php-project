@@ -1,9 +1,4 @@
 <?php
-if (!isset($_SESSION["user_id"]) || $_SESSION["user_id"] == 0) {
-	header('location:index.php');
-}
-?>
-<?php
 //start sesstion
 include('includes/header.php');
 function redirect($url)
@@ -134,4 +129,9 @@ if (isset($_SESSION['type']) && $_SESSION['type'] == 0) {
 	exit();
 }
 include('includes/footer.php');
+?>
+<?php
+if (!isset($_SESSION["user_id"]) || $_SESSION["user_id"] == 0) {
+	header('location:index.php');
+}
 ?>

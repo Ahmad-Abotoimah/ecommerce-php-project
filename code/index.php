@@ -1,29 +1,30 @@
 <?php
 include("admin/includes/connect.php");
+
 /*adding new visitor */
-// $visitor_ip = $_SERVER["REMOTE_ADDR"];
+$visitor_ip = $_SERVER["REMOTE_ADDR"];
 /* CHECK IF VISITOR IS UNIQUE*/
-// $sql = "SELECT * FROM `unique_visitors`";
-// $result = mysqli_query($conn, $sql);
-// $visitors = mysqli_fetch_all($result);
-// $visitor_check = 1;
-// if (!($result->num_rows < 1)) {
-// 	foreach ($visitors as $array) {
-// 		if ($array["visitor_ip"] = $visitor_ip) {
-// 			$visitor_check = 0;
-// 		}
-// 	}
-// } else if ($result->num_rows < 1) {
-// 	$visitor_check = 0;
-// }
-// if ($visitor_check = 1) {
-// 	$sql = "INSERT INTO unique_visitors(visitor_ip) VALUE ('$visitor_ip')";
-// 	if (mysqli_query($conn, $sql)) {
-// 		echo "";
-// 	} else {
-// 		echo "";
-// 	}
-// }
+$sql = "SELECT * FROM `unique_visitors`";
+$result = mysqli_query($conn, $sql);
+$visitors = mysqli_fetch_all($result);
+$visitor_check = 1;
+if (!($result->num_rows < 1)) {
+	foreach ($visitors as $array) {
+		if ($array["visitor_ip"] = $visitor_ip) {
+			$visitor_check = 0;
+		}
+	}
+} else if ($result->num_rows < 1) {
+	$visitor_check = 0;
+}
+if ($visitor_check = 1) {
+	$sql = "INSERT INTO unique_visitors(visitor_ip) VALUE ('$visitor_ip')";
+	if (mysqli_query($conn, $sql)) {
+		echo "";
+	} else {
+		echo "";
+	}
+}
 ?>
 <?php
 include("includes/header.php");
