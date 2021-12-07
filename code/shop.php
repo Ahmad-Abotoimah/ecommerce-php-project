@@ -149,6 +149,12 @@ include "./admin/includes/connect.php";
 				$sql = "SELECT * FROM products ORDER BY product_price DESC";
 				$result = mysqli_query($conn, $sql);
 				$product = mysqli_fetch_all($result, MYSQLI_ASSOC);
+			} //=================================================
+			if ($_GET["sort"] == "category") {
+				$id = $_GET["id"];
+				$sql = "SELECT * FROM products WHERE product_categorie_id=$id";
+				$result = mysqli_query($conn, $sql);
+				$product = mysqli_fetch_all($result, MYSQLI_ASSOC);
 			}
 			if ($_GET["sort"] == "low") {
 				$sql = "SELECT * FROM products ORDER BY product_price";
