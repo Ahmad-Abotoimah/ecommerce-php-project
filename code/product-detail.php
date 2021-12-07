@@ -252,8 +252,8 @@ if (isset($_GET["id"])) {
 
 									<div class="size-204 respon6-next">
 										<div class="rs1-select2 bor8 bg0">
-											<select class="js-select2" name="size">
-												<option value="<?php echo $row['product_size'] == NULL ? "-" : 0; ?>" <?php echo $row['product_size'] == NULL ? "disabled" : ''; ?>>Choose an option</option>
+											<select <?php echo $row['product_size'] == NULL ? "disabled" : ''; ?> class="js-select2" name="size">
+												<option value="<?php echo $row['product_size'] == NULL ? "-" : 0; ?>">Choose an option</option>
 												<?php
 												if ($row['product_size'] != NULL) {
 													$sizeStr = $row['product_size'];

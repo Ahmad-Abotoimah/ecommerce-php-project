@@ -155,7 +155,7 @@ $cat  = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
 			<?php
 
-			$sql = "SELECT * FROM categories WHERE category_name='Wotches' OR category_name='Bags' OR category_name='Accessories'";
+			$sql = "SELECT * FROM categories WHERE category_name='Shoes' OR category_name='Bags' OR category_name='Accessories'";
 			$result = mysqli_query($conn, $sql);
 			$cat2  = mysqli_fetch_all($result, MYSQLI_ASSOC);
 			// print_r($cat2);
@@ -206,7 +206,7 @@ $cat  = mysqli_fetch_all($result, MYSQLI_ASSOC);
 		<!-- connectto  sql  -->
 		<?php
 
-		$sql = "SELECT * FROM products WHERE product_tag='new' ";
+		$sql = "SELECT * FROM products WHERE product_tag LIKE '%new%' LIMIT 4 ";
 		$result = mysqli_query($conn, $sql);
 		$product  = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
@@ -263,7 +263,7 @@ $cat  = mysqli_fetch_all($result, MYSQLI_ASSOC);
 		<!-- connectto  sql  -->
 		<?php
 
-		$sql = "SELECT * FROM products WHERE product_tag='sales' ";
+		$sql = "SELECT * FROM products WHERE product_tag LIKE '%sales%' LIMIT 4 ";
 		$result = mysqli_query($conn, $sql);
 		$product  = mysqli_fetch_all($result, MYSQLI_ASSOC);
 

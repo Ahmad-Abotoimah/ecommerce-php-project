@@ -1,7 +1,9 @@
 <?php include("includes/header.php");
 include "./admin/includes/functions.php";
 include "./admin/includes/connect.php";
-
+$sql = "SELECT * FROM categories";
+$result = mysqli_query($conn, $sql);
+$categories = mysqli_fetch_all($result, MYSQLI_ASSOC);
 ?>
 
 
@@ -81,7 +83,7 @@ include "./admin/includes/connect.php";
 							</li>
 						</ul>
 					</div>
-					<div class="filter-col2 p-r-15 p-b-27">
+					<div class="filter-col1 p-r-15 p-b-27">
 						<div class="mtext-102 cl2 p-b-15">
 							Price
 						</div>
@@ -118,6 +120,19 @@ include "./admin/includes/connect.php";
 							</li>
 						</ul>
 					</div>
+					<div class="filter-col2 p-b-27">
+						<div class="mtext-102 cl2 p-b-15">
+							Categories
+						</div>
+
+						<div class="flex-w p-t-4 m-r--5">
+							<?php foreach ($categories as $key => $value) { ?>
+								<a href="?sort=category&id=<?php echo $value['category_id']; ?>" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
+									<?php echo $value['category_name']; ?>
+								</a>
+							<?php } ?>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -135,7 +150,7 @@ include "./admin/includes/connect.php";
 				$product = mysqli_fetch_all($result, MYSQLI_ASSOC);
 			} //=================================================
 			if ($_GET["sort"] == "category") {
-				$id = $_GET["id"];
+				$id = (int)$_GET["id"];
 				$sql = "SELECT * FROM products WHERE product_categorie_id=$id";
 				$result = mysqli_query($conn, $sql);
 				$product = mysqli_fetch_all($result, MYSQLI_ASSOC);
@@ -194,15 +209,6 @@ include "./admin/includes/connect.php";
 			$sql = "SELECT * FROM products";
 			$result = mysqli_query($conn, $sql);
 			$product = mysqli_fetch_all($result, MYSQLI_ASSOC);
-		} else {
-			$sql = "SELECT * FROM (
-				SELECT *
-				FROM `products`
-				ORDER BY `product_id` DESC
-				LIMIT 12
-			) AS `products` ORDER by product_id ASC";
-			$result = mysqli_query($conn, $sql);
-			$product = mysqli_fetch_all($result, MYSQLI_ASSOC);
 		}
 		?>
 
@@ -214,25 +220,25 @@ include "./admin/includes/connect.php";
 			?>
 
 				<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item <?php
-																			if ($val["product_tag"] == "women") {
-																				echo "women";
-																			}
-																			if ($val["product_tag"] == "watches") {
-																				echo "watches";
-																			}
-																			if ($val["product_tag"] == "shoes") {
-																				echo "shoes";
-																			}
-																			if ($val["product_tag"] == "sales") {
-																				echo "sales";
-																			}
-																			if ($val["product_tag"] == "new") {
-																				echo "new";
-																			}
-																			if ($val["product_tag"] == "men") {
-																				echo "men";
-																			}
-																			?>">
+																																		if ($val["product_tag"] == "women") {
+																																			echo "women";
+																																		}
+																																		if ($val["product_tag"] == "watches") {
+																																			echo "watches";
+																																		}
+																																		if ($val["product_tag"] == "shoes") {
+																																			echo "shoes";
+																																		}
+																																		if ($val["product_tag"] == "sales") {
+																																			echo "sales";
+																																		}
+																																		if ($val["product_tag"] == "new") {
+																																			echo "new";
+																																		}
+																																		if ($val["product_tag"] == "men") {
+																																			echo "men";
+																																		}
+																																		?>">
 					<!-- Block2 -->
 					<div class="block2">
 						<a href="product-detail.php?id=<?php echo $val['product_id']; ?>">
