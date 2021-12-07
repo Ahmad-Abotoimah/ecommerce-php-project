@@ -201,7 +201,12 @@ $categories = mysqli_fetch_all($result, MYSQLI_ASSOC);
 			$result = mysqli_query($conn, $sql);
 			$product = mysqli_fetch_all($result, MYSQLI_ASSOC);
 		} else {
-			$sql = "SELECT * FROM products";
+			$sql = "SELECT * FROM (
+				SELECT *
+				FROM `products`
+				ORDER BY `product_id` DESC
+				LIMIT 12
+			) AS `products` ORDER by product_id ASC";
 			$result = mysqli_query($conn, $sql);
 			$product = mysqli_fetch_all($result, MYSQLI_ASSOC);
 		}
