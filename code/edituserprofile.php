@@ -68,11 +68,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $passError      = "The password shouldn't be empty!";
     }
     if (!preg_match("/^[077|079|078]+[0-9]{7}$/", $mobile)) { //mobile 
-        $mobileError  = "Only letters and white space allowed";
+        $mobileError  = "should be a mobile number";
         $check      = 0;
     }
     if ($mobile == "") {
-
         $check          = 0;
         $mobileError      = "The mobile shouldn't be empty!";
     }
@@ -89,10 +88,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $image_folder   = "admin/uploads/user_image/";
     $target_file    = $image_folder . uniqid() . basename($image["name"]);
     $image_check    = ",user_image='$target_file'";
-    if (($image["size"]) == 0) {
-        $target_file    = $user['user_image'];
-        $image_check    = "";
+    if (isset($user['user_image'])) {
+        if (($image["size"]) == 0) {
+            $target_file    = $user['user_image'];
+            $image_check    = "";
+        }
     }
+
     //print_r($image);
 
     move_uploaded_file($image["tmp_name"], $target_file);
@@ -124,7 +126,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <div class="col-md-6 ml-auto mr-auto">
                         <div class="profile" style="text-align: center;">
                             <div class="avatar">
-                                <img src="<?php echo $user[0]['user_image'] ?>" alt="photo" style="margin-top:-90px">
+                                <img src="<?php echo $user[0]['user_image'] ?>" alt="photo" style="margin-top:-90px border-radius: 50%; width : 180px; height: 180px;">
                                 <div class="file ck">
                                     <!-- Change Photo -->
                                     <input name="userimg" type="file" class="form-control" id="exampleInputPassword1">
@@ -229,6 +231,6 @@ $conn->close();
 <?php
 include('includes/footer.php');
 if (!isset($_SESSION["user_id"]) || $_SESSION["user_id"] == 0) {
-    header('location:index.php');
+    redirect('location:index.php');
 }
 ?>
