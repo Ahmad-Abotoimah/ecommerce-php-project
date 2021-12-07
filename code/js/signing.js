@@ -1,4 +1,5 @@
     //////////////sign Up validation ///////////////
+    const pass2InputSignUpPage = document.querySelector("#signUP_pass2_input");
     if (pass2InputSignUpPage) {
         const signUp_Btn = document.getElementById("signUp_insignup_btn");
         const form1 = document.querySelector("#signup_form")

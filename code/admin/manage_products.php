@@ -548,7 +548,7 @@ if (!isset($_GET['do'])) {
               </thead>
               <tbody>
                 <?php foreach ($product as $key => $row) { ?>
-                  <tr>
+                  <tr style="max-height: 100px;">
                     <td>
                       <label class="users-table__checkbox">
                         <input type="checkbox" class="check">

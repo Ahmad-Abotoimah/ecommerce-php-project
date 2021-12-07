@@ -161,7 +161,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </form>
         </div>
     </div>
-    <script src="js/signing.js"></script>
 </body>
 <!-- This templates was made by Colorlib (https://colorlib.com) -->
 
