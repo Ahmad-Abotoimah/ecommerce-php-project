@@ -93,10 +93,10 @@ if (isset($_GET["id"])) {
 	if (isset($_POST["add_to_cart"])) {
 		$ok = 1;
 		print_r($_POST);
-		// if ($_POST['size'] == 0) {
-		// 	$sizeError = "you must choose size!";
-		// 	$ok = 0;
-		// }
+		if ($_POST['size'] == 0) {
+			$sizeError = "you must choose size!";
+			$ok = 0;
+		}
 		if ($ok == 1) {
 			if (isset($_SESSION['cart'])) {
 				$items = array_column($_SESSION["cart"], 'product_id');
