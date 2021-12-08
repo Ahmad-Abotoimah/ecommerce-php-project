@@ -155,7 +155,7 @@ $cat  = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
 			<?php
 
-			$sql = "SELECT * FROM categories WHERE category_name='Wotches' OR category_name='Bags' OR category_name='Accessories'";
+			$sql = "SELECT * FROM categories WHERE category_name='Shoes' OR category_name='Bags' OR category_name='Accessories'";
 			$result = mysqli_query($conn, $sql);
 			$cat2  = mysqli_fetch_all($result, MYSQLI_ASSOC);
 			// print_r($cat2);
@@ -163,9 +163,9 @@ $cat  = mysqli_fetch_all($result, MYSQLI_ASSOC);
 			foreach ($cat2 as $val) {   ?>
 				<div class="col-md-6 col-lg-4 p-b-30 m-lr-auto">
 					<div class="block1 wrap-pic-w">
-						<img src="<?php echo 'admin/' . $val['category_image'];  ?>" alt="IMG-BANNER">
+						<img style="height:280px; object-fit:cover;" src="<?php echo 'admin/' . $val['category_image'];  ?>" alt="IMG-BANNER">
 
-						<a href="shop.php" class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
+						<a href="shop.php?sort=category&id=<?php echo $val['category_id'] ?>" class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
 							<div class="block1-txt-child1 flex-col-l">
 								<span class="block1-name ltext-102 trans-04 p-b-8">
 									<?php echo $val['category_name'];  ?>
@@ -206,7 +206,7 @@ $cat  = mysqli_fetch_all($result, MYSQLI_ASSOC);
 		<!-- connectto  sql  -->
 		<?php
 
-		$sql = "SELECT * FROM products WHERE product_tag='new' ";
+		$sql = "SELECT * FROM products WHERE product_tag LIKE '%new%' LIMIT 4 ";
 		$result = mysqli_query($conn, $sql);
 		$product  = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
@@ -263,7 +263,7 @@ $cat  = mysqli_fetch_all($result, MYSQLI_ASSOC);
 		<!-- connectto  sql  -->
 		<?php
 
-		$sql = "SELECT * FROM products WHERE product_tag='sales' ";
+		$sql = "SELECT * FROM products WHERE product_tag LIKE '%sales%' LIMIT 4 ";
 		$result = mysqli_query($conn, $sql);
 		$product  = mysqli_fetch_all($result, MYSQLI_ASSOC);
 

@@ -1,12 +1,12 @@
 <?php include("includes/header.php");
 include "./admin/includes/functions.php";
 include "./admin/includes/connect.php";
-if (isset($_GET['distroy_seesion'])) {
-	unset($_SESSION['cart']);
-}
+$sql = "SELECT * FROM categories";
+$result = mysqli_query($conn, $sql);
+$categories = mysqli_fetch_all($result, MYSQLI_ASSOC);
 ?>
 <!-- Product -->
-<div class="bg0 m-t-23 p-b-140">
+<div class="bg0 p-b-140">
 	<div class="container">
 		<div class="flex-w flex-sb-m p-b-52">
 			<div class="flex-w flex-l-m filter-tope-group m-tb-10">
@@ -28,10 +28,6 @@ if (isset($_GET['distroy_seesion'])) {
 
 				<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".shoes">
 					Shoes
-				</button>
-
-				<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".watches">
-					Watches
 				</button>
 
 				<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".sales">
@@ -81,7 +77,7 @@ if (isset($_GET['distroy_seesion'])) {
 							</li>
 						</ul>
 					</div>
-					<div class="filter-col2 p-r-15 p-b-27">
+					<div class="filter-col1 p-r-15 p-b-27">
 						<div class="mtext-102 cl2 p-b-15">
 							Price
 						</div>
@@ -118,6 +114,18 @@ if (isset($_GET['distroy_seesion'])) {
 							</li>
 						</ul>
 					</div>
+					<div class="filter-col2 p-b-27">
+						<div class="mtext-102 cl2 p-b-15">
+							Categories
+						</div>
+						<div class="flex-w p-t-4 m-r--5">
+							<?php foreach ($categories as $key => $value) { ?>
+								<a href="?sort=category&id=<?php echo $value['category_id']; ?>" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
+									<?php echo $value['category_name']; ?>
+								</a>
+							<?php } ?>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -135,7 +143,7 @@ if (isset($_GET['distroy_seesion'])) {
 				$product = mysqli_fetch_all($result, MYSQLI_ASSOC);
 			} //=================================================
 			if ($_GET["sort"] == "category") {
-				$id = $_GET["id"];
+				$id = (int)$_GET["id"];
 				$sql = "SELECT * FROM products WHERE product_categorie_id=$id";
 				$result = mysqli_query($conn, $sql);
 				$product = mysqli_fetch_all($result, MYSQLI_ASSOC);
@@ -182,36 +190,30 @@ if (isset($_GET['distroy_seesion'])) {
 			}
 		} else if (isset($_GET["search"])) {
 			$search = $_GET["search"];
-			$sql = "SELECT * FROM products WHERE product_tag LIKE '%{$search}%'";
+			$sql = "SELECT * FROM products WHERE product_tag LIKE '%{$search}%' OR product_name LIKE '%{$search}%'";
 			$result = mysqli_query($conn, $sql);
 			$product = mysqli_fetch_all($result, MYSQLI_ASSOC);
+			if (count($product) == 0) {
+				$searchError = "No items found";
+			}
 		} else {
 			$sql = "SELECT * FROM products";
 			$result = mysqli_query($conn, $sql);
 			$product = mysqli_fetch_all($result, MYSQLI_ASSOC);
-		} // } else if (!isset($_GET["load_more"]) || isset($_GET["load_less"]) || isset($_GET["unsort"])) {
-		// 	$sql = "SELECT * FROM (
-		// 		SELECT *
-		// 		FROM `products`
-		// 		ORDER BY `product_id` DESC
-		// 		LIMIT 12
-		// 	) AS `products` ORDER by product_id ASC";
-		// 	$result = mysqli_query($conn, $sql);
-		// 	$product = mysqli_fetch_all($result, MYSQLI_ASSOC);
-		// }
+		}
+
 		?>
 
 		<div class="row isotope-grid">
-			<?php
-			foreach ($product as $val) {
-			?>
+			<?php echo isset($searchError) ? '<h1 style="margin: auto;">' . $searchError . "</h1>" : "";
+			foreach ($product as $val) { ?>
 
 				<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item <?php
+																			if ($val["product_tag"] == "bag") {
+																				echo "bag";
+																			}
 																			if ($val["product_tag"] == "women") {
 																				echo "women";
-																			}
-																			if ($val["product_tag"] == "watches") {
-																				echo "watches";
 																			}
 																			if ($val["product_tag"] == "shoes") {
 																				echo "shoes";
@@ -229,57 +231,33 @@ if (isset($_GET['distroy_seesion'])) {
 					<!-- Block2 -->
 					<div class="block2">
 						<a href="product-detail.php?id=<?php echo $val['product_id']; ?>">
-							<div class="block2-pic hov-img0">
-								<img src="<?php echo 'admin/' . $val['product_main_image']; ?>" alt="IMG-PRODUCT">
-							</div>
+							<?php if (str_contains($val["product_tag"], "new")) { ?>
+								<div class="block2-pic hov-img0" data-label="New">
+								<?php } else { ?>
+									<div class="block2-pic hov-img0">
+									<?php } ?>
+									<?php if (str_contains($val["product_tag"], "sales")) { ?>
+										<div style="width:15%;height:5vh;border-radius:50px;background-color:red;text-align:center;position:absolute ;padding-top:10px;color:white;font-weight:bold"> 50% </div>
+									<?php } ?>
+									<img src="<?php echo 'admin/' . $val['product_main_image']; ?>" alt="IMG-PRODUCT">
+									</div>
 
-							<div class="block2-txt flex-w flex-t p-t-14">
-								<div class="block2-txt-child1 flex-col-l ">
-									<a href="product-detail.php?id=<?php echo $val['product_id']; ?>" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-										<?php echo $val['product_name']; ?>
-									</a>
+									<div class="block2-txt flex-w flex-t p-t-14">
+										<div class="block2-txt-child1 flex-col-l ">
+											<a href="product-detail.php?id=<?php echo $val['product_id']; ?>" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+												<?php echo $val['product_name']; ?>
+											</a>
 
-									<span class="stext-105 cl3">
-										<?php echo '$' . $val['product_price']; ?>
-									</span>
-								</div>
-							</div>
+											<span class="stext-105 cl3">
+												<?php echo '$' . $val['product_price']; ?>
+											</span>
+										</div>
+									</div>
 						</a>
 					</div>
 				</div>
 			<?php  }  ?>
 		</div>
-
-
-		<!-- Load more -->
-		<?php //if (!isset($_GET["load_more"]) && !isset($_GET["sort"]) || isset($_GET["search"])) { 
-		?>
-		<!-- <div class="flex-c-m flex-w w-full p-t-45" id="load_more">
-				<a href="shop.php?load_more" class="flex-c-m stext-101 cl5 size-103 bg2 bor1 hov-btn1 p-lr-15 trans-04" id="anchor">
-					Show More
-				</a>
-			</div> -->
-		<?php //} 
-		?>
-		<?php //if (isset($_GET["load_more"]) && !isset($_GET["unsort"])) { 
-		?>
-		<!-- <div class="flex-c-m flex-w w-full p-t-45" id="load_more">
-				<a href="shop.php?load_less" class="flex-c-m stext-101 cl5 size-103 bg2 bor1 hov-btn1 p-lr-15 trans-04" id="anchor">
-					Show Less
-				</a>
-			</div> -->
-		<?php //} 
-		?>
-		<!-- <?php //if (isset($_GET["sort"])) { 
-				?> -->
-		<!-- <div class="flex-c-m flex-w w-full p-t-45" id="load_more">
-				<a href="shop.php?unsort" class="flex-c-m stext-101 cl5 size-103 bg2 bor1 hov-btn1 p-lr-15 trans-04" id="anchor">
-					Unsort Shop
-				</a>
-			</div> -->
-		<?php //} 
-		?>
-
 	</div>
 </div>
 </body>

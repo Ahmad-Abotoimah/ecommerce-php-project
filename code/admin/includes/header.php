@@ -4,16 +4,18 @@ require_once("functions.php");
 session_start();
 ?>
 <?php
-if (isset($_SESSION["type"])) {
-  if (@$_SESSION["type"] == 2) {
+if (isset($_SESSION["type"]) && $_SESSION["type"] != 0) {
+  if ($_SESSION["type"] == 2) {
     $id = $_SESSION["super_admin_id"];
   } else {
-    @$id = $_SESSION["admin_id"];
+    $id = $_SESSION["admin_id"];
   }
   $sql    = "SELECT * FROM admins WHERE admin_id=$id";
   $result = mysqli_query($conn, $sql);
   @$admins = mysqli_fetch_all($result, MYSQLI_ASSOC);
   // echo $admins[0]["admin_image"];
+} elseif (!isset($_SESSION["type"])) {
+  header('location:../index.php');
 }
 
 ?>

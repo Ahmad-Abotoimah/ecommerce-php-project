@@ -4,7 +4,7 @@ include "./includes/header.php";
 if (!isset($_SESSION["type"]) || $_SESSION["type"] == 0) {
   redirect('location:../index.php');
 }
-$sql = "SELECT * FROM admins ";
+$sql = "SELECT * FROM users ";
 $result = mysqli_query($conn, $sql);
 $num_of_users = $result->num_rows;
 ?>

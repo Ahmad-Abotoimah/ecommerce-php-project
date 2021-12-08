@@ -2,7 +2,9 @@
 ob_start(); // Output Buffering Start
 include "./includes/header.php";
 $total = 0;
-
+echo "<pre>";
+print_r($_SESSION);
+echo "</pre>";
 if (isset($_GET['delete'])) {
 	$del = $_GET['delete'];
 	if (isset($_SESSION['cart'])) {
@@ -16,8 +18,10 @@ if (isset($_GET['delete'])) {
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
 	if (isset($_SESSION['cart'])) {
 		if (isset($_POST['update'])) {
+
 			foreach ($_SESSION['cart'] as $keys => $value) {
 				foreach ($_POST as $key => $value) {
 					if ($keys == $key) {
@@ -81,7 +85,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 												<div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
 													<i class="fs-16 zmdi zmdi-minus"></i>
 												</div>
-												<input class="mtext-104 cl3 txt-center num-product" type="number" min="1" name="<?php echo $value['product_id'] . $value['size']; ?>" value="<?php echo $value['quantity']; ?>">
+												<input class="mtext-104 cl3 txt-center num-product" type="number" min=1 max=100 name="<?php echo $value['product_id'] . $value['size']; ?>" value="<?php echo $value['quantity']; ?>">
 
 												<div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
 													<i class="fs-16 zmdi zmdi-plus"></i>
