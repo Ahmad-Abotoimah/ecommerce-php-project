@@ -1,7 +1,7 @@
 <?php
 include "./includes/header.php";
 if (!isset($_SESSION["type"]) || $_SESSION["type"] == 0) {
-  redirect('location:../index.php');
+  redirect('../index.php');
 }
 
 // function redirect($url)

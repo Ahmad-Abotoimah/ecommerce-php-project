@@ -3,7 +3,6 @@ ob_start(); // Output Buffering Start
 include "./includes/header.php";
 $total = 0;
 echo "<pre>";
-print_r($_SESSION);
 echo "</pre>";
 if (isset($_GET['delete'])) {
 	$del = $_GET['delete'];
@@ -18,7 +17,7 @@ if (isset($_GET['delete'])) {
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
+	@$coupon = $_POST["coupon"];
 	if (isset($_SESSION['cart'])) {
 		if (isset($_POST['update'])) {
 
@@ -104,16 +103,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 						</table>
 					</div>
-
 					<div class="flex-w flex-sb-m bor15 p-t-18 p-b-15 p-lr-40 p-lr-15-sm">
 						<div class="flex-w flex-m m-r-20 m-tb-5">
 							<input class="stext-104 cl2 plh4 size-117 bor13 p-lr-20 m-r-10 m-tb-5" type="text" name="coupon" placeholder="Coupon Code">
 
-							<div class="flex-c-m stext-101 cl2 size-119 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-10">
-								Apply coupon
+							<div class="flex-c-m stext-101 cl2 size-119 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-10" type:'submit'>
+								<button name="coupon_set" type="submit">
+									Apply Coupon
+								</button>
 							</div>
 						</div>
-
+						<?php if (isset($_POST["coupon_set"])) {
+							$sql = "SELECT * FROM coupons WHERE coupon_text ='$coupon' ORDER BY coupon_percent DESC";
+							$result = mysqli_query($conn, $sql);
+							if ($result->num_rows > 0) {
+								$coupons = mysqli_fetch_all($result, MYSQLI_ASSOC);
+								$total *= ($coupons[0]['coupon_percent'] / 100);
+								$_SESSION['total'] = $total;
+							}
+						} ?>
 						<div class="flex-c-m stext-101 cl2 size-119 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-10">
 							<button name="update" type="submit">
 								Update Cart

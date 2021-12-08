@@ -12,8 +12,11 @@ if (isset($_GET['id'])) {
     unset($_SESSION['cart']);
 }
 ?>
+<div class="card-header">
+    <h4 class="card-title">Manage Orders</h4>
+</div>
 <div class="row">
-    <div class="col-lg-12">
+    <div class="col-lg-12" style=" margin-left:30px;margin-top: 25px; max-width:95%;">
         <div class="users-table table-wrapper">
             <table class="table table-striped" id="table1">
                 <thead>

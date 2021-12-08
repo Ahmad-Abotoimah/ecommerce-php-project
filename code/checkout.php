@@ -122,7 +122,7 @@ if (isset($_POST['pay'])) {
 
               <span class="header-cart-item-info">
                 <?php echo $value['quantity'] . " x $" . $value['product_price'];
-                $total += (int)$value['product_price'] * (int)$value['quantity']; ?>
+                $_SESSION['total']; ?>
               </span>
             </div>
           </li>
@@ -133,7 +133,7 @@ if (isset($_POST['pay'])) {
     <div class="flex-w flex-t  p-b-33">
       <div class="size-208">
         <span class="mtext-101 cl2">
-          Total: <?php echo "$" . $total ?>
+          Total: <?php echo "$" . $_SESSION['total']; ?>
         </span>
       </div>
     </div>

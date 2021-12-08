@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 07, 2021 at 03:48 PM
+-- Generation Time: Dec 08, 2021 at 05:10 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.12
 
@@ -41,7 +41,7 @@ CREATE TABLE `admins` (
 --
 
 INSERT INTO `admins` (`admin_id`, `admin_name`, `admin_email`, `admin_password`, `admin_image`, `admin_type`) VALUES
-(1, 'ahmad', 'ahmadabotoimah@gmail.com', 'Aa123456', 'uploads/admin_image/61ad4f6253e223.jpeg', 1);
+(2, 'ahmad', 'ahmadabotoimah@gmail.com', 'Aa123456', 'uploads/admin_image/61b00e233f33d61aca3f7f01d9banner-02.jpg', 1);
 
 -- --------------------------------------------------------
 
@@ -82,6 +82,52 @@ CREATE TABLE `comments` (
   `comment_user_id` int(11) NOT NULL,
   `comment_rate` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `coupons`
+--
+
+CREATE TABLE `coupons` (
+  `coupon_id` int(11) NOT NULL,
+  `coupon_text` varchar(255) NOT NULL,
+  `coupon_percent` varchar(255) NOT NULL,
+  `coupon_status` varchar(255) NOT NULL DEFAULT 'enable'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `coupons`
+--
+
+INSERT INTO `coupons` (`coupon_id`, `coupon_text`, `coupon_percent`, `coupon_status`) VALUES
+(36, 'ahmad123', '50', 'active');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `orders`
+--
+
+CREATE TABLE `orders` (
+  `order_id` int(11) NOT NULL,
+  `order_details` varchar(255) NOT NULL,
+  `order_location` varchar(255) NOT NULL,
+  `order_mobile` varchar(255) NOT NULL,
+  `order_user_name` varchar(255) NOT NULL,
+  `order_date` timestamp NOT NULL DEFAULT current_timestamp(),
+  `order_total` varchar(255) NOT NULL,
+  `order_status` varchar(255) NOT NULL DEFAULT 'preparing',
+  `order_user_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `orders`
+--
+
+INSERT INTO `orders` (`order_id`, `order_details`, `order_location`, `order_mobile`, `order_user_name`, `order_date`, `order_total`, `order_status`, `order_user_id`) VALUES
+(44, 'dwfaegsrdt', 'qewarsty', '45474', 'qw45rehytju', '2021-12-08 02:07:49', 'dqwEAFRST', 'arrived', 20),
+(45, ',Gabbie Panelled Flare ,86,76,,', 'salt', '2147483647', 'FM', '2021-12-08 04:09:43', '172', 'preparing', 22);
 
 -- --------------------------------------------------------
 
@@ -206,10 +252,11 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`user_id`, `user_name`, `user_email`, `user_password`, `user_mobile`, `user_location`, `user_image`, `user_gender`, `user_creation_date`) VALUES
-(20, 'ahmad hashem', 'ahmad@gmail.com', 'Aa123456', 792851914, 'salt', 'admin/uploads/user_image/61af470e620b43.jpeg', 'Male', '2021-12-03 10:49:01'),
+(20, 'ahmad', 'ahmad@gmail.com', 'Aa123456', 792851914, 'salt', ' uploads/user_image/61b00ef176e3f', 'Male', '2021-12-03 10:49:01'),
 (22, 'FM', 'fm@gmail.com', '7890-', 2147483647, 'salt', ' uploads/user_image/61aa0056164f8avatar.png', 'female', '2021-12-03 10:54:03'),
 (23, 'lana', 'lana@test.com', '7890-87', 2147483647, 'amman', ' uploads/user_image/61aa00785aa8bavatar.png', 'female', '2021-12-03 11:08:11'),
-(26, 'admin', 'admint@test.com', 'errrrrrrrrrr', 2147483647, 'salt', ' uploads/user_image/61ab99ed9a21cavatar.png', 'Male', '2021-12-03 11:39:30');
+(26, 'admin', 'admint@test.com', 'errrrrrrrrrr', 2147483647, 'salt', ' uploads/user_image/61ab99ed9a21cavatar.png', 'Male', '2021-12-03 11:39:30'),
+(28, 'ahmad', 'reem.baniali@gmail.com', 'Aa123456', NULL, NULL, 'uploads/user_image/61b010be71ab261a969395e190images (1).png', 'Male', '2021-12-08 01:56:14');
 
 --
 -- Indexes for dumped tables
@@ -234,6 +281,19 @@ ALTER TABLE `comments`
   ADD PRIMARY KEY (`comment_id`),
   ADD KEY `comment_user` (`comment_user_id`),
   ADD KEY `comment_product` (`comment_product_id`);
+
+--
+-- Indexes for table `coupons`
+--
+ALTER TABLE `coupons`
+  ADD PRIMARY KEY (`coupon_id`);
+
+--
+-- Indexes for table `orders`
+--
+ALTER TABLE `orders`
+  ADD PRIMARY KEY (`order_id`),
+  ADD KEY `order_user_id` (`order_user_id`);
 
 --
 -- Indexes for table `products`
@@ -264,7 +324,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `admins`
 --
 ALTER TABLE `admins`
-  MODIFY `admin_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `admin_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `categories`
@@ -279,6 +339,18 @@ ALTER TABLE `comments`
   MODIFY `comment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
+-- AUTO_INCREMENT for table `coupons`
+--
+ALTER TABLE `coupons`
+  MODIFY `coupon_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+
+--
+-- AUTO_INCREMENT for table `orders`
+--
+ALTER TABLE `orders`
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+
+--
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
@@ -288,13 +360,13 @@ ALTER TABLE `products`
 -- AUTO_INCREMENT for table `unique_visitors`
 --
 ALTER TABLE `unique_visitors`
-  MODIFY `visittor_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `visittor_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- Constraints for dumped tables
@@ -306,6 +378,12 @@ ALTER TABLE `users`
 ALTER TABLE `comments`
   ADD CONSTRAINT `comment_product` FOREIGN KEY (`comment_product_id`) REFERENCES `products` (`product_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `comment_user` FOREIGN KEY (`comment_user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `orders`
+--
+ALTER TABLE `orders`
+  ADD CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`order_user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `products`

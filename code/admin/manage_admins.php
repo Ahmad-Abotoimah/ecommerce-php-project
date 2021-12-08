@@ -3,7 +3,7 @@ ob_start();
 include "./includes/header.php"; ?>
 <?php
 if (!isset($_SESSION["type"]) || $_SESSION["type"] != 2) {
-  redirect('location:../index.php');
+  redirect('../index.php');
 }
 ?>
 <?php
