@@ -93,6 +93,9 @@ if (isset($_SESSION["type"]) && $_SESSION["type"] != 0) {
             </li>
             <li>
               <a href="manage_comments.php"><span class="icon paper" aria-hidden="true"></span>Comments</a>
+            <li>
+            <li>
+              <a href="manage_coupons.php"><span class="icon paper" aria-hidden="true"></span>Coupons</a>
             </li>
             <li>
               <a href="../index.php"><span class="icon paper" aria-hidden="true"></span>webisite</a>
@@ -102,7 +105,7 @@ if (isset($_SESSION["type"]) && $_SESSION["type"] != 0) {
           <?php
           if (isset($_SESSION["type"])) {
             if ($_SESSION["type"] == 2)
-              echo '<div class="sidebar-footer" style="margin-top: 265px;">
+              echo '<div class="sidebar-footer" style="margin-top: 70px;">
             <a href="##" class="sidebar-user">
               <span class="sidebar-user-img">
               <img src="' . $admins[0]['admin_image'] . '">
@@ -166,7 +169,7 @@ if (isset($_SESSION["type"]) && $_SESSION["type"] != 0) {
                   </div>';
                 } ?>
           <div class="nav-user-wrapper">
-            <button href="##" class="nav-user-btn dropdown-btn" title="My profile" type="button" style="margin-top: 15px;">
+            <button href="##" class="nav-user-btn dropdown-btn" title="My profile" type="button">
               <span class="sr-only">My profile</span>
               <span class="nav-user-img">
                 <img src="<?php echo  $admins[0]['admin_image'] ?>" alt="abcd">

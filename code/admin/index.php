@@ -2,7 +2,7 @@
 include "./includes/header.php";
 
 if (!isset($_SESSION["type"]) || $_SESSION["type"] == 0) {
-  redirect('location:../index.php');
+  redirect('../index.php');
 }
 $sql = "SELECT * FROM users ";
 $result = mysqli_query($conn, $sql);
