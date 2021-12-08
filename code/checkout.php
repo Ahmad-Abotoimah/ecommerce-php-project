@@ -45,10 +45,12 @@ if (isset($_POST['pay'])) {
       $cartStr = "," . $val['product_name'] . "," . $val['product_price'] . "," . $val['product_id'] . "," . $val['product_size'] . "," . $val['product_quantity'];
       $cart = $cart . $cartStr;
     }
-    $sql = "INSERT INTO orders (`order_details`,`order_location`,`order_mobile`,`order_user_id`,`order_user_name`,`order_total`) VALUES ('$cart','$location',$mobile,$id,'$name','$total')";
-    $result = mysqli_query($conn, $sql);
-    redirect("order.php?order");
-    $conn->close();
+    if ($total != 0) {
+      $sql = "INSERT INTO orders (`order_details`,`order_location`,`order_mobile`,`order_user_id`,`order_user_name`,`order_total`) VALUES ('$cart','$location',$mobile,$id,'$name','$total')";
+      $result = mysqli_query($conn, $sql);
+      redirect("order.php?order");
+      $conn->close();
+    }
   }
 }
 
@@ -133,7 +135,9 @@ if (isset($_POST['pay'])) {
     <div class="flex-w flex-t  p-b-33">
       <div class="size-208">
         <span class="mtext-101 cl2">
-          Total: <?php echo "$" . $_SESSION['total']; ?>
+          Total: <?php echo "$" . @$_SESSION['total'];
+                  $_SESSION['total'] = 0;
+                  ?>
         </span>
       </div>
     </div>
