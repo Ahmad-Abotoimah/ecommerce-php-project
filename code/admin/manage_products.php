@@ -1,24 +1,24 @@
 <?php
 include "./includes/header.php";
 if (!isset($_SESSION["type"]) || $_SESSION["type"] == 0) {
-  header('location:../index.php');
+  redirect('location:../index.php');
 }
 
-function redirect($url)
-{
-  if (!headers_sent()) {
-    header('Location: ' . $url);
-    exit;
-  } else {
-    echo '<script type="text/javascript">';
-    echo 'window.location.href="' . $url . '";';
-    echo '</script>';
-    echo '<noscript>';
-    echo '<meta http-equiv="refresh" content="0;url=' . $url . '" />';
-    echo '</noscript>';
-    exit;
-  }
-}
+// function redirect($url)
+// {
+//   if (!headers_sent()) {
+//     header('Location: ' . $url);
+//     exit;
+//   } else {
+//     echo '<script type="text/javascript">';
+//     echo 'window.location.href="' . $url . '";';
+//     echo '</script>';
+//     echo '<noscript>';
+//     echo '<meta http-equiv="refresh" content="0;url=' . $url . '" />';
+//     echo '</noscript>';
+//     exit;
+//   }
+// }
 //header
 
 //select product from database
@@ -542,7 +542,7 @@ if (!isset($_GET['do'])) {
                   <th>tag</th>
                   <th>sizes</th>
                   <th>categorie</th>
-                  <th> </th>
+                  <th>Action</th>
 
                 </tr>
               </thead>

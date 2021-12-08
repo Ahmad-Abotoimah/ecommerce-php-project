@@ -1,10 +1,10 @@
 <?php include("includes/header.php");
 include "./admin/includes/functions.php";
 include "./admin/includes/connect.php";
-
+if (isset($_GET['distroy_seesion'])) {
+	unset($_SESSION['cart']);
+}
 ?>
-
-
 <!-- Product -->
 <div class="bg0 m-t-23 p-b-140">
 	<div class="container">
@@ -189,27 +189,20 @@ include "./admin/includes/connect.php";
 			$sql = "SELECT * FROM products";
 			$result = mysqli_query($conn, $sql);
 			$product = mysqli_fetch_all($result, MYSQLI_ASSOC);
-		}
-		if (isset($_GET["load_more"])) {
-			$sql = "SELECT * FROM products";
-			$result = mysqli_query($conn, $sql);
-			$product = mysqli_fetch_all($result, MYSQLI_ASSOC);
-		} else {
-			$sql = "SELECT * FROM (
-				SELECT *
-				FROM `products`
-				ORDER BY `product_id` DESC
-				LIMIT 12
-			) AS `products` ORDER by product_id ASC";
-			$result = mysqli_query($conn, $sql);
-			$product = mysqli_fetch_all($result, MYSQLI_ASSOC);
-		}
+		} // } else if (!isset($_GET["load_more"]) || isset($_GET["load_less"]) || isset($_GET["unsort"])) {
+		// 	$sql = "SELECT * FROM (
+		// 		SELECT *
+		// 		FROM `products`
+		// 		ORDER BY `product_id` DESC
+		// 		LIMIT 12
+		// 	) AS `products` ORDER by product_id ASC";
+		// 	$result = mysqli_query($conn, $sql);
+		// 	$product = mysqli_fetch_all($result, MYSQLI_ASSOC);
+		// }
 		?>
 
 		<div class="row isotope-grid">
 			<?php
-
-
 			foreach ($product as $val) {
 			?>
 
@@ -259,14 +252,34 @@ include "./admin/includes/connect.php";
 
 
 		<!-- Load more -->
-		<?php if (!isset($_GET["load_more"])) { ?>
-
-			<div class="flex-c-m flex-w w-full p-t-45" id="load_more">
+		<?php //if (!isset($_GET["load_more"]) && !isset($_GET["sort"]) || isset($_GET["search"])) { 
+		?>
+		<!-- <div class="flex-c-m flex-w w-full p-t-45" id="load_more">
 				<a href="shop.php?load_more" class="flex-c-m stext-101 cl5 size-103 bg2 bor1 hov-btn1 p-lr-15 trans-04" id="anchor">
-					Load More
+					Show More
 				</a>
-			</div>
-		<?php } ?>
+			</div> -->
+		<?php //} 
+		?>
+		<?php //if (isset($_GET["load_more"]) && !isset($_GET["unsort"])) { 
+		?>
+		<!-- <div class="flex-c-m flex-w w-full p-t-45" id="load_more">
+				<a href="shop.php?load_less" class="flex-c-m stext-101 cl5 size-103 bg2 bor1 hov-btn1 p-lr-15 trans-04" id="anchor">
+					Show Less
+				</a>
+			</div> -->
+		<?php //} 
+		?>
+		<!-- <?php //if (isset($_GET["sort"])) { 
+				?> -->
+		<!-- <div class="flex-c-m flex-w w-full p-t-45" id="load_more">
+				<a href="shop.php?unsort" class="flex-c-m stext-101 cl5 size-103 bg2 bor1 hov-btn1 p-lr-15 trans-04" id="anchor">
+					Unsort Shop
+				</a>
+			</div> -->
+		<?php //} 
+		?>
+
 	</div>
 </div>
 </body>

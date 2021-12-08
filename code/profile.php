@@ -107,14 +107,15 @@ if (isset($_SESSION['type']) && $_SESSION['type'] == 0) {
 					</div> -->
 
 
-					<div class="row gutters">
-						<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-							<div class="text-right u">
-								<button type="button" id="submit" name="submit" class="btn btn-primary">
-									<a class="bt" href="edituserprofile.php" style="text-decoration: none;"> Edit Profile </a>
-								</button>
-							</div>
-						</div>
+					<div style="text-align: right;">
+						<button type="button" id="submit" name="submit" class="btn btn-primary">
+							<a class="bt" href="edituserprofile.php" style="text-decoration: none;"> Edit Profile </a>
+						</button>
+					</div>
+					<div>
+						<button type="button" id="submit" name="submit" class="btn btn-primary" style="margin-left: 28px;margin-top: 5px;">
+							<a class="bt" href="order.php" style="text-decoration: none;"> last order </a>
+						</button>
 					</div>
 				</div>
 			</div>

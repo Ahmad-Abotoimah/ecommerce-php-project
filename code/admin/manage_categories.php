@@ -3,7 +3,7 @@ ob_start();
 include "./includes/header.php";
 
 if (!isset($_SESSION["type"]) || $_SESSION["type"] == 0) {
-  header('location:../index.php');
+  redirect('location:../index.php');
 }
 
 // select all comments
@@ -25,7 +25,7 @@ if (isset($_GET["do"])) {
     $id = $_GET["id"];
     $sql = "DELETE FROM categories WHERE category_id = '$id'";
     $result = mysqli_query($conn, $sql);
-    header("location: manage_categories.php");
+    redirect("location: manage_categories.php");
   }
   if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $category_name = $_POST["category_name"];
@@ -58,13 +58,13 @@ if (isset($_GET["do"])) {
       $id = $_GET["id"];
       $sql = "UPDATE categories SET category_name = '$category_name', category_description = '$category_description', category_image = '$newImage' WHERE category_id = $id";
       $result = mysqli_query($conn, $sql);
-      header("location: manage_categories.php");
+      redirect("location: manage_categories.php");
     }
     //add
     if ($do == "add" && $check == 1) {
       $sql = "INSERT INTO categories (category_name, category_description, category_image) VALUES ('$category_name', '$category_description', '$newImage')";
       $result = mysqli_query($conn, $sql);
-      header("location: manage_categories.php");
+      redirect("location: manage_categories.php");
     }
   }
 ?>

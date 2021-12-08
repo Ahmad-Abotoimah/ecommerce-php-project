@@ -1,5 +1,6 @@
 <?php
 require("includes/connect.php");
+require_once("functions.php");
 session_start();
 ?>
 <?php
@@ -11,7 +12,7 @@ if (isset($_SESSION["type"])) {
   }
   $sql    = "SELECT * FROM admins WHERE admin_id=$id";
   $result = mysqli_query($conn, $sql);
-  $admins = mysqli_fetch_all($result, MYSQLI_ASSOC);
+  @$admins = mysqli_fetch_all($result, MYSQLI_ASSOC);
   // echo $admins[0]["admin_image"];
 }
 
@@ -84,6 +85,9 @@ if (isset($_SESSION["type"])) {
             <li>
             <li>
               <a href="manage_products.php"><span class="icon image" aria-hidden="true"></span>Products</a>
+            </li>
+            <li>
+              <a href="manage_orders.php"><span class="icon paper" aria-hidden="true"></span>Orders</a>
             </li>
             <li>
               <a href="manage_comments.php"><span class="icon paper" aria-hidden="true"></span>Comments</a>
@@ -163,7 +167,7 @@ if (isset($_SESSION["type"])) {
             <button href="##" class="nav-user-btn dropdown-btn" title="My profile" type="button" style="margin-top: 15px;">
               <span class="sr-only">My profile</span>
               <span class="nav-user-img">
-                <img src="<?php echo $admins[0]['admin_image'] ?>" alt="abcd">
+                <img src="<?php echo  $admins[0]['admin_image'] ?>" alt="abcd">
               </span>
             </button>
             <ul class="users-item-dropdown nav-user-dropdown dropdown">

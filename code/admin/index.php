@@ -2,7 +2,7 @@
 include "./includes/header.php";
 
 if (!isset($_SESSION["type"]) || $_SESSION["type"] == 0) {
-  header('location:../index.php');
+  redirect('location:../index.php');
 }
 $sql = "SELECT * FROM admins ";
 $result = mysqli_query($conn, $sql);

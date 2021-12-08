@@ -164,16 +164,6 @@
         });
     });
     /*======================loadMore========================*/
-    // const loadMoreBtn = document.getElementById("load_more")
-    // const anchor = document.getElementById("anchor")
-    // if (loadMoreBtn) {
-    //     loadMoreBtn.addEventListener("click", () => {
-    //         if (anchor.innerHTML == "Load More") {
-    //             anchor.innerHTML = "Show Less"
-    //             anchor.href = "shop.php"
-    //         }
-    //     })
-    // }
     /*==============================================*/
     /*==================================================================
     [ Filter / Search product ]*/

@@ -1,26 +1,26 @@
 <?php include "./includes/header.php";
 
 if (!isset($_SESSION["type"]) || $_SESSION["type"] != 2) {
-  header('location:../index.php');
+  redirect('location:../index.php');
 }
 ?>
 
 <?php
-function redirect($url)
-{
-  if (!headers_sent()) {
-    header('Location: ' . $url);
-    exit;
-  } else {
-    echo '<script type="text/javascript">';
-    echo 'window.location.href="' . $url . '";';
-    echo '</script>';
-    echo '<noscript>';
-    echo '<meta http-equiv="refresh" content="0;url=' . $url . '" />';
-    echo '</noscript>';
-    exit;
-  }
-}
+// function redirect($url)
+// {
+//   if (!headers_sent()) {
+//     header('Location: ' . $url);
+//     exit;
+//   } else {
+//     echo '<script type="text/javascript">';
+//     echo 'window.location.href="' . $url . '";';
+//     echo '</script>';
+//     echo '<noscript>';
+//     echo '<meta http-equiv="refresh" content="0;url=' . $url . '" />';
+//     echo '</noscript>';
+//     exit;
+//   }
+// }
 
 $sql = "SELECT * FROM users ";
 $result = mysqli_query($conn, $sql);
@@ -303,7 +303,7 @@ if (!isset($_GET['do'])) { ?>
                   <tr>
                     <td class="px-6 py-4">
                       <div class="text-sm text-gray-900 flex justify-center items-center">
-                        <img src=<?php echo isset($user['user_image']) ? $user['user_image'] : ''; ?> class="mr-3" width="50px" alt="">
+                        <img src=<?php echo isset($user['user_image']) ? "./" . $user['user_image'] : ''; ?> class="mr-3" width="50px" alt="">
                         <?php echo $user["user_name"]; ?>
                       </div>
                     </td>
