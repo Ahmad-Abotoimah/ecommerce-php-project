@@ -106,7 +106,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 					<div class="flex-w flex-sb-m bor15 p-t-18 p-b-15 p-lr-40 p-lr-15-sm">
 						<div class="flex-w flex-m m-r-20 m-tb-5">
 							<input class="stext-104 cl2 plh4 size-117 bor13 p-lr-20 m-r-10 m-tb-5" type="text" name="coupon" placeholder="Coupon Code">
-
+							<div style="color: red;font-weight:bold"><?php if (isset($_POST['coupon_set'])) echo @$couponError ?></div>
 							<div class="flex-c-m stext-101 cl2 size-119 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-10" type:'submit'>
 								<button name="coupon_set" type="submit">
 									Apply Coupon
@@ -118,7 +118,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 							$result = mysqli_query($conn, $sql);
 							if ($result->num_rows > 0) {
 								$coupons = mysqli_fetch_all($result, MYSQLI_ASSOC);
-								$total *= ($coupons[0]['coupon_percent'] / 100);
+								if ($coupons[0]['coupon_status'] == 'enable') {
+									$couponError = "";
+									$total *= ($coupons[0]['coupon_percent'] / 100);
+								} else {
+									$couponError = " Sorry this coupon is Disaples";
+								}
+								$_SESSION['total'] = $total;
+							} else {
+								$couponError = "this coupon isnt valid";
 								$_SESSION['total'] = $total;
 							}
 						} ?>
