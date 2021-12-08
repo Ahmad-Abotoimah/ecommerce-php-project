@@ -6,7 +6,7 @@ if (!isset($_SESSION["type"]) || $_SESSION["type"] != 0) {
   header('location:sign_in.php');
 }
 if (!isset($_SESSION['cart'])) {
-  header('location:shop.php');
+  header('location:shop.php?page=1');
 }
 
 if (isset($_SESSION['user_id'])) {

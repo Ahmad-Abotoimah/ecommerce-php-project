@@ -141,7 +141,7 @@ if (isset($_GET["id"])) {
 			<i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
 		</a>
 
-		<a href="shop.php" class="stext-109 cl8 hov-cl1 trans-04">
+		<a href="shop.php?page=1" class="stext-109 cl8 hov-cl1 trans-04">
 			<?php echo $product[0]['category_name'] ?>
 			<i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
 		</a>

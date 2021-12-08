@@ -4,6 +4,9 @@ include "./admin/includes/connect.php";
 $sql = "SELECT * FROM categories";
 $result = mysqli_query($conn, $sql);
 $categories = mysqli_fetch_all($result, MYSQLI_ASSOC);
+
+// define how many results you want per page
+$results_per_page = 12;
 ?>
 <!-- Product -->
 <div class="bg0 p-b-140">
@@ -199,8 +202,33 @@ $categories = mysqli_fetch_all($result, MYSQLI_ASSOC);
 		} else {
 			$sql = "SELECT * FROM products";
 			$result = mysqli_query($conn, $sql);
+
+			$number_of_results = mysqli_num_rows($result);
+			//determine number of total pages available
+			$number_of_pages = ceil($number_of_results / $results_per_page);
+			// determine which page number visitor is currently on
+			if (!isset($_GET['page'])) {
+				$page = 1;
+			} else {
+				$page = $_GET['page'];
+			}
+			// determine the sql LIMIT starting number for the results on the displaying page
+			$this_page_first_result = ($page - 1) * $results_per_page;
+			$sql = 'SELECT * FROM products LIMIT ' . $this_page_first_result . ',' .  $results_per_page;
+			$result = mysqli_query($conn, $sql);
 			$product = mysqli_fetch_all($result, MYSQLI_ASSOC);
 		}
+
+		//===================================Pages==========================================
+
+
+
+
+		// retrieve selected results from database and display them on page
+
+		// display the links to the pages
+
+		//===================================Pages==========================================
 
 		?>
 
@@ -209,25 +237,25 @@ $categories = mysqli_fetch_all($result, MYSQLI_ASSOC);
 			foreach ($product as $val) { ?>
 
 				<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item <?php
-																			if ($val["product_tag"] == "bag") {
-																				echo "bag";
-																			}
-																			if ($val["product_tag"] == "women") {
-																				echo "women";
-																			}
-																			if ($val["product_tag"] == "shoes") {
-																				echo "shoes";
-																			}
-																			if ($val["product_tag"] == "sales") {
-																				echo "sales";
-																			}
-																			if ($val["product_tag"] == "new") {
-																				echo "new";
-																			}
-																			if ($val["product_tag"] == "men") {
-																				echo "men";
-																			}
-																			?>">
+																																		if ($val["product_tag"] == "bag") {
+																																			echo "bag";
+																																		}
+																																		if ($val["product_tag"] == "women") {
+																																			echo "women";
+																																		}
+																																		if ($val["product_tag"] == "shoes") {
+																																			echo "shoes";
+																																		}
+																																		if ($val["product_tag"] == "sales") {
+																																			echo "sales";
+																																		}
+																																		if ($val["product_tag"] == "new") {
+																																			echo "new";
+																																		}
+																																		if ($val["product_tag"] == "men") {
+																																			echo "men";
+																																		}
+																																		?>">
 					<!-- Block2 -->
 					<div class="block2">
 						<a href="product-detail.php?id=<?php echo $val['product_id']; ?>">
@@ -260,6 +288,140 @@ $categories = mysqli_fetch_all($result, MYSQLI_ASSOC);
 		</div>
 	</div>
 </div>
+<style>
+	p,
+	li,
+	a {
+		font-size: 14px;
+	}
+
+	/* GRID */
+
+	.twelve {
+		width: 100%;
+	}
+
+	.eleven {
+		width: 91.53%;
+	}
+
+	.ten {
+		width: 83.06%;
+	}
+
+	.nine {
+		width: 74.6%;
+	}
+
+	.eight {
+		width: 66.13%;
+	}
+
+	.seven {
+		width: 57.66%;
+	}
+
+	.six {
+		width: 49.2%;
+	}
+
+	.five {
+		width: 40.73%;
+	}
+
+	.four {
+		width: 32.26%;
+	}
+
+	.three {
+		width: 23.8%;
+	}
+
+	.two {
+		width: 15.33%;
+	}
+
+	.one {
+		width: 6.866%;
+	}
+
+	/* COLUMNS */
+
+	.col {
+		display: block;
+		float: left;
+		margin: 1% 0 1% 1.6%;
+	}
+
+	.col:first-of-type {
+		margin-left: 0;
+	}
+
+	/* CLEARFIX */
+
+	.cf:before,
+	.cf:after {
+		content: " ";
+		display: table;
+	}
+
+	.cf:after {
+		clear: both;
+	}
+
+	.cf {
+		*zoom: 1;
+	}
+
+	/* GENERAL STYLES */
+
+	.pagination {
+		padding: 30px 0;
+	}
+
+	.pagination ul {
+		margin: 0;
+		padding: 0;
+		list-style-type: none;
+	}
+
+	.pagination a {
+		display: inline-block;
+		padding: 10px 18px;
+		color: #222;
+	}
+
+	.p9 a {
+		width: 30px;
+		height: 30px;
+		line-height: 25px;
+		padding: 0;
+		text-align: center;
+		margin: auto 5px;
+	}
+
+	.p9 a.is-active {
+		border: 3px solid #717fe0;
+		border-radius: 100%;
+	}
+</style>
+<div style="display: flex; justify-content:center;">
+	<div class="pagination p9">
+		<ul>
+			<?php
+			if (isset($_GET['page'])) {
+				for ($page = 1; $page <= $number_of_pages; $page++) { ?>
+					<a <?php echo $_GET['page'] == $page ? 'class="is-active"' : ""; ?>href="?page=<?php echo $page ?>">
+						<li><?php echo $page ?></li>
+					</a>
+			<?php }
+			} ?>
+		</ul>
+	</div>
+
+
+</div>
+
 </body>
 
 </html>

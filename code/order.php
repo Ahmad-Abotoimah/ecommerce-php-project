@@ -39,7 +39,7 @@ if (isset($_GET['order'])) {
                         <?php
                         } ?>
                     </ul>
-                    <hr> <a href="shop.php" class="btn btn-warning" data-abc="true"> <i class="fa fa-chevron-left"></i>Return To Shop</a>
+                    <hr> <a href="shop.php?page=1" class="btn btn-warning" data-abc="true"> <i class="fa fa-chevron-left"></i>Return To Shop</a>
                     <a href="shop.php?distroy_seesion" class="btn btn-warning" data-abc="true" style="margin-left: 768px;"> My Order Arrived<i class="fa fa-chevron-right"></i></a>
                 </div>
             <?php
