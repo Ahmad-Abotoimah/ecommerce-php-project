@@ -16,71 +16,7 @@ if (isset($_GET["do"])) {
     $sql = "DELETE FROM comments WHERE comment_id = '$id'";
     $result = mysqli_query($conn, $sql);
   }
-  // edit
-  // if ($do == "edit") {
-  //   $sql = "UPDATE comments SET column1=value, column2=value2,...
-  //   WHERE some_column=some_value  = '$id'";
-  //   $result = mysqli_query($conn, $sql);
-  // }
-  //   add
-  // if ($do == "edit") {
-  //   $sql = "DELETE FROM comments WHERE comment_id = '$id'";
-  //   $result = mysqli_query($conn, $sql);
-  // }
-  if ($_SERVER["REQUEST_METHOD"] == "POST") {
-  } ?>
-  <!-- start form -->
-  <div class="col-md-6 col-12">
-    <div class="card">
-      <div class="card-header">
-        <h4 class="card-title">Horizontal Form with Icons</h4>
-      </div>
-      <div class="card-content">
-        <div class="card-body">
-          <form class="form form-horizontal" method="POST" enctype="multipart/form-data">
-            <div class="form-body">
-              <div class="row">
-                <div class="col-md-4">
-                  <label>Comment</label>
-                </div>
-                <div class="col-md-8">
-                  <div class="form-group has-icon-left">
-                    <div class="position-relative row justify-content-center align-items-center d-flex">
-                      <input name="comment" type="text" class="form-control col-9 mb-2" placeholder="Name" style="border: 1px solid #dce7f1 !important;" id="first-name-icon">
-                      <div class="form-control-icon col-3 ">
-                        <i class="bi bi-person" style="position: absolute; top:-10px; left: -20px;"></i>
-                      </div>
-                      <span class="text-danger mb-2"><?php echo isset($commentError) ? $commentError : ""; ?></span>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-4">
-                  <label>Image</label>
-                </div>
-                <div class="col-md-8">
-                  <div class="form-group has-icon-left">
-                    <div class="position-relative row justify-content-center align-items-center d-flex">
-                      <input name="image" type="file" class="form-control col-9 mb-2" style="border: 1px solid #dce7f1 !important;" id="first-name-icon">
-                      <div class="form-control-icon col-3">
-                        <i class="bi bi-envelope" style="position: absolute; top:-10px; left: -20px;"></i>
-                      </div>
-                      <span class="text-danger"><?php echo isset($imageError) ? $imageError : ""; ?></span>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-12 d-flex justify-content-end">
-                  <button type="submit" class="btn btn-primary me-1 mb-1"><?php echo $_GET["do"] == "edit" ? "Save" : "Add"; ?></button>
-                  <button type="reset" class="btn btn-light-secondary me-1 mb-1">Reset</button>
-                </div>
-              </div>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- end form -->
-<?php  } ?>
+} ?>
 
 <!-- start table -->
 <div class="row">
@@ -99,7 +35,7 @@ if (isset($_GET["do"])) {
           <?php foreach ($comments as $key => $value) { ?>
             <tr>
               <td>
-                <img src="<?php echo "../" . $value["user_image"] ?>" alt=""> <?php echo $value["user_name"] ?>
+                <img src="<?php echo  $value["user_image"] ?>" alt=""> <?php echo $value["user_name"] ?>
               </td>
               <td>
                 <?php echo $value["comment"] ?>

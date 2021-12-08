@@ -83,7 +83,7 @@ if (isset($_GET['do'])) {
         $genderError = "The gender shouldn't be empty!";
       }
 
-      $image_folder = "uploads/user_image/";
+      $image_folder = "user_image/";
       $target_file = $image_folder . uniqid() . basename($image["name"]);
       move_uploaded_file($image["tmp_name"], $target_file);
       if ($check == 1) {
@@ -155,7 +155,7 @@ if (isset($_GET['do'])) {
     }
   }
 ?>
-  <div class="col-md-6 col-12 offset-3">
+  <div class="col-md-8 mt-5 col-12 offset-md-2">
     <div class="card">
       <div class="card-header">
         <h4 class="card-title">Manage Users</h4>
@@ -261,11 +261,7 @@ if (isset($_GET['do'])) {
 $conn->close();
 ?>
 
-<link rel="stylesheet" href="assets/vendors/simple-datatables/style.css">
-<link rel="stylesheet" href="assets/vendors/perfect-scrollbar/perfect-scrollbar.css">
-<link rel="stylesheet" href="assets/vendors/bootstrap-icons/bootstrap-icons.css">
-<link rel="stylesheet" href="assets/css/app.css">
-<link rel="shortcut icon" href="assets/images/favicon.svg" type="image/x-icon">
+
 
 <?php
 if (!isset($_GET['do'])) { ?>
@@ -289,7 +285,6 @@ if (!isset($_GET['do'])) { ?>
                       <input type="checkbox" class="check-all">User Image
                     </label>
                   </th>
-                  <th>User Id</th>
                   <th>User Name</th>
                   <th>User Email</th>
                   <th>User Password</th>
@@ -303,11 +298,10 @@ if (!isset($_GET['do'])) { ?>
                   <tr>
                     <td class="px-6 py-4">
                       <div class="text-sm text-gray-900 flex justify-center items-center">
-                        <img src=<?php echo isset($user['user_image']) ? "./" . $user['user_image'] : ''; ?> class="mr-3" width="50px" alt="">
+                        <img src=<?php echo isset($user['user_image']) ? $user['user_image'] : ''; ?> class="mr-3" width="50px" alt="">
                         <?php echo $user["user_name"]; ?>
                       </div>
                     </td>
-                    <td><?php echo isset($user['user_id']) ? $user['user_id'] : ''; ?></td>
                     <td><?php echo isset($user['user_name']) ? $user['user_name'] : ''; ?></td>
                     <td><?php echo isset($user['user_email']) ? $user['user_email'] : ''; ?></td>
                     <td><?php echo isset($user['user_password']) ? $user['user_password'] : ''; ?></td>

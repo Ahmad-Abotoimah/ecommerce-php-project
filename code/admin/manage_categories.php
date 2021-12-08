@@ -69,7 +69,7 @@ if (isset($_GET["do"])) {
   }
 ?>
   <!-- start form -->
-  <div class="col-md-5 offset-3 col-12">
+  <div class="col-md-8 mt-5 col-12 offset-md-2">
     <div class="card">
       <div class="card-header">
         <h4 class="card-title">Manage Category</h4>
@@ -85,7 +85,7 @@ if (isset($_GET["do"])) {
                 <div class="col-md-8">
                   <div class="form-group has-icon-left">
                     <div class="position-relative row justify-content-center align-items-center d-flex">
-                      <input name="category_name" value="<?php echo $do == "edit" ? $row["category_name"] : ""; ?>" type="text" class="form-control col-9 mb-2" placeholder="Name" style="border: 1px solid #dce7f1 !important;" id="first-name-icon">
+                      <input name="category_name" value="<?php echo $do == "edit" ? $row["category_name"] : ""; ?>" type="text" class="form-control col-9 mb-2" placeholder="Category Name" style="border: 1px solid #dce7f1 !important;" id="first-name-icon">
                       <div class="form-control-icon col-3 ">
                         <i class="bi bi-person" style="position: absolute; top:-10px; left: -20px;"></i>
                       </div>
@@ -99,7 +99,7 @@ if (isset($_GET["do"])) {
                 <div class="col-md-8">
                   <div class="form-group has-icon-left">
                     <div class="position-relative row justify-content-center align-items-center d-flex">
-                      <input name="category_description" value="<?php echo $do == "edit" ? $row["category_description"] : ""; ?>" type="text" class="form-control col-9 mb-2" placeholder="Name" style="border: 1px solid #dce7f1 !important;" id="first-name-icon">
+                      <input name="category_description" value="<?php echo $do == "edit" ? $row["category_description"] : ""; ?>" type="text" class="form-control col-9 mb-2" placeholder="Category Description" style="border: 1px solid #dce7f1 !important;" id="first-name-icon">
                       <div class="form-control-icon col-3 ">
                         <i class="bi bi-person" style="position: absolute; top:-10px; left: -20px;"></i>
                       </div>
