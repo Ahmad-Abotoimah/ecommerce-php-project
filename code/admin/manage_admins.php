@@ -159,7 +159,7 @@ if (isset($_GET['do'])) {
 
   <!-- start form -->
 
-  <div class="col-md-6 col-12 offset-3">
+  <div class="col-md-8 mt-5 col-12 offset-md-2">
 
     <div class="card">
       <div class="card-header">

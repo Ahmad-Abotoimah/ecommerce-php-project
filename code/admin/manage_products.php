@@ -268,7 +268,7 @@ if (isset($_GET['do'])) {
   }
 ?>
   <!-- start form -->
-  <div class="col-md-6 col-12">
+  <div class="col-md-8 mt-5 col-12 offset-md-2">
     <div class="card">
       <div class="card-header">
         <h4 class="card-title">Add products :</h4>
@@ -513,6 +513,33 @@ if (!isset($_GET['do'])) { ?>
 $conn->close();
 if (!isset($_GET['do'])) {
 ?>
+  <style>
+    .product_description {
+      width: 250px;
+      height: 100px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .product_description:hover {
+      overflow: visible;
+      white-space: normal;
+    }
+
+    .product_image {
+      width: 600px !important;
+      height: 100px !important;
+    }
+
+    td img {
+      width: 80px !important;
+      height: 80px !important;
+      border-radius: 0% !important;
+      padding: 5px;
+      object-fit: cover;
+    }
+  </style>
   <main class="main users chart-page" id="skip-target">
     <div class="container">
       <!-- start table -->
@@ -525,20 +552,14 @@ if (!isset($_GET['do'])) {
                 <tr class="users-table-info">
                   <th>
                     <label class="users-table__checkbox ms-20">
-                      <input type="checkbox" class="check-all">image
+                      image
                     </label>
                   </th>
                   <th>name</th>
-                  <th>description</th>
+                  <th class="product_description">description</th>
                   <th>price</th>
                   <th>quantity </th>
-                  <th>rate</th>
-                  <th>image_1</th>
-                  <th>image_2</th>
-                  <th>image_3</th>
-                  <th>image_4</th>
-                  <th>image_5</th>
-                  <th>image_6</th>
+                  <th class="product_image">images</th>
                   <th>tag</th>
                   <th>sizes</th>
                   <th>categorie</th>
@@ -548,10 +569,10 @@ if (!isset($_GET['do'])) {
               </thead>
               <tbody>
                 <?php foreach ($product as $key => $row) { ?>
-                  <tr style="max-height: 100px;">
+                  <tr>
                     <td>
                       <label class="users-table__checkbox">
-                        <input type="checkbox" class="check">
+
                         <div class="categories-table-img">
                           <picture>
                             <source srcset="<?php echo isset($row['product_main_image']) ? $row['product_main_image'] : ''; ?>" type="image/webp">
@@ -563,21 +584,23 @@ if (!isset($_GET['do'])) {
                     <td>
                       <?php echo isset($row['product_name']) ? $row['product_name'] : ''; ?>
                     </td>
-                    <td>
-                      <?php echo isset($row['product_description']) ? $row['product_description'] : ''; ?>
+
+                    <td class="product_description">
+                      <div class="product_description"><?php echo isset($row['product_description']) ? $row['product_description'] : ''; ?></div>
                     </td>
-                    <td><span class="badge-pending"><?php echo isset($row['product_price']) ? $row['product_price'] : ''; ?></span></td>
+                    <td><span class="badge-pending"><?php echo isset($row['product_price']) ? '$' . $row['product_price'] : ''; ?></span></td>
                     <td><?php echo isset($row['product_quantity']) ? $row['product_quantity'] : ''; ?></td>
-                    <td><?php echo isset($row['product_rate']) ? $row['product_rate'] : ''; ?></td>
-                    <td><img src="<?php echo isset($row['product_desc_image_1']) ? $row['product_desc_image_1'] : ''; ?>" alt="ff" style='width:50px; height:50px;'></td>
-                    <td><img src="<?php echo isset($row['product_desc_image_2']) ? $row['product_desc_image_2'] : ''; ?>" alt="ff" style='width:50px; height:50px;'></td>
-                    <td><img src="<?php echo isset($row['product_desc_image_3']) ? $row['product_desc_image_3'] : ''; ?>" alt="ff" style='width:50px; height:50px;'></td>
-                    <td><img src="<?php echo isset($row['product_nd_color_image']) ? $row['product_nd_color_image'] : ''; ?>" alt="ff" style='width:50px; height:50px;'></td>
-                    <td><img src="<?php echo isset($row['product_thd_color_image']) ? $row['product_thd_color_image'] : ''; ?>" alt="ff" style='width:50px; height:50px;'></td>
-                    <td><img src="<?php echo isset($row['product_fourth_color_image']) ? $row['product_fourth_color_image'] : ''; ?>" alt="ff" style='width:50px; height:50px;'></td>
+                    <td>
+                      <img src="<?php echo isset($row['product_desc_image_1']) ? $row['product_desc_image_1'] : ''; ?>">
+                      <img src="<?php echo isset($row['product_desc_image_2']) ? $row['product_desc_image_2'] : ''; ?>">
+                      <img src="<?php echo isset($row['product_desc_image_3']) ? $row['product_desc_image_3'] : ''; ?>">
+                      <img src="<?php echo isset($row['product_nd_color_image']) ? $row['product_nd_color_image'] : ''; ?>">
+                      <img src="<?php echo isset($row['product_thd_color_image']) ? $row['product_thd_color_image'] : ''; ?>">
+                      <img src="<?php echo isset($row['product_fourth_color_image']) ? $row['product_fourth_color_image'] : ''; ?>">
+                    </td>
                     <td><?php echo isset($row['product_tag']) ? $row['product_tag'] : ''; ?></td>
                     <td><?php echo isset($row['product_size']) ? $row['product_size'] : ''; ?></td>
-                    <td><?php echo isset($row['product_categorie_id']) ? $row['product_categorie_id'] : ''; ?></td>
+                    <td><?php echo isset($row['category_name']) ? $row['category_name'] : ''; ?></td>
                     <td>
                       <span class="p-relative">
                         <button class="dropdown-btn transparent-btn" type="button" title="More info">
