@@ -4,7 +4,14 @@ include "./admin/includes/connect.php";
 $sql = "SELECT * FROM categories";
 $result = mysqli_query($conn, $sql);
 $categories = mysqli_fetch_all($result, MYSQLI_ASSOC);
-
+$sql = "SELECT * FROM products";
+$result = mysqli_query($conn, $sql);
+$tags = mysqli_fetch_all($result, MYSQLI_ASSOC);
+$tagsArray = [];
+foreach ($tags as $key => $value) {
+	array_push($tagsArray, $value['product_tag']);
+}
+$tags_unique = array_unique($tagsArray);
 // define how many results you want per page
 $results_per_page = 12;
 ?>
@@ -12,46 +19,7 @@ $results_per_page = 12;
 <div class="bg0 p-b-140">
 	<div class="container">
 		<div class="flex-w flex-sb-m p-b-52">
-			<div class="flex-w flex-l-m filter-tope-group m-tb-10">
-				<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 how-active1" data-filter="*">
-					All Products
-				</button>
-
-				<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".women">
-					Women
-				</button>
-
-				<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".men">
-					Men
-				</button>
-
-				<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".bag">
-					Bag
-				</button>
-
-				<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".shoes">
-					Shoes
-				</button>
-
-				<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".sales">
-					Sales
-				</button>
-
-				<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".new">
-					New
-				</button>
-			</div>
-
-			<div class="flex-w flex-c-m m-tb-10">
-				<div class="flex-c-m stext-106 cl6 size-104 bor4 pointer hov-btn3 trans-04 m-r-8 m-tb-4 js-show-filter">
-					<i class="icon-filter cl2 m-r-6 fs-15 trans-04 zmdi zmdi-filter-list"></i>
-					<i class="icon-close-filter cl2 m-r-6 fs-15 trans-04 zmdi zmdi-close dis-none"></i>
-					Filter
-				</div>
-			</div>
-
-			<!-- Filter -->
-			<div class="dis-none panel-filter w-full p-t-10">
+			<div class=" panel-filter w-full p-t-10">
 				<div class="wrap-filter flex-w bg6 w-full p-lr-40 p-t-27 p-lr-15-sm">
 					<div class="filter-col1 p-r-15 p-b-27">
 						<div class="mtext-102 cl2 p-b-15">
@@ -80,7 +48,7 @@ $results_per_page = 12;
 							</li>
 						</ul>
 					</div>
-					<div class="filter-col1 p-r-15 p-b-27">
+					<div class="filter-col2 p-r-15 p-b-27">
 						<div class="mtext-102 cl2 p-b-15">
 							Price
 						</div>
@@ -117,7 +85,7 @@ $results_per_page = 12;
 							</li>
 						</ul>
 					</div>
-					<div class="filter-col2 p-b-27">
+					<div class="filter-col3 p-b-27">
 						<div class="mtext-102 cl2 p-b-15">
 							Categories
 						</div>
@@ -129,8 +97,23 @@ $results_per_page = 12;
 							<?php } ?>
 						</div>
 					</div>
+					<div class="filter-col4 p-b-27">
+						<div class="mtext-102 cl2 p-b-15">
+							Tags
+						</div>
+
+						<div class="flex-w p-t-4 m-r--5">
+							<?php foreach ($tags_unique as $key => $value) { ?>
+								<a href="?sort=tag&name=<?php echo $value; ?>" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
+									<?php echo $value; ?>
+								</a>
+							<?php }
+							?>
+						</div>
+					</div>
 				</div>
 			</div>
+			<!-- Filter -->
 		</div>
 
 
@@ -148,6 +131,12 @@ $results_per_page = 12;
 			if ($_GET["sort"] == "category") {
 				$id = (int)$_GET["id"];
 				$sql = "SELECT * FROM products WHERE product_categorie_id=$id";
+				$result = mysqli_query($conn, $sql);
+				$product = mysqli_fetch_all($result, MYSQLI_ASSOC);
+			}
+			if ($_GET["sort"] == "tag") {
+				$name = $_GET["name"];
+				$sql = "SELECT * FROM products WHERE product_tag ='{$name}'";
 				$result = mysqli_query($conn, $sql);
 				$product = mysqli_fetch_all($result, MYSQLI_ASSOC);
 			}

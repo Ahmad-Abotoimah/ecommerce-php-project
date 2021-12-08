@@ -215,7 +215,7 @@ $cat  = mysqli_fetch_all($result, MYSQLI_ASSOC);
 		<div class="row isotope-grid">
 
 			<!-- first image  -->
-			<?php foreach ($product as $val) {     ?>
+			<?php foreach ($product as $val) { ?>
 				<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item sales">
 					<!-- Block2 -->
 

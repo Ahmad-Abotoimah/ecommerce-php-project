@@ -12,7 +12,7 @@ if (isset($_SESSION["type"]) && $_SESSION["type"] != 0) {
   }
   $sql    = "SELECT * FROM admins WHERE admin_id=$id";
   $result = mysqli_query($conn, $sql);
-  @$admins = mysqli_fetch_all($result, MYSQLI_ASSOC);
+  $admins = mysqli_fetch_all($result, MYSQLI_ASSOC);
   // echo $admins[0]["admin_image"];
 } elseif (!isset($_SESSION["type"])) {
   header('location:../index.php');

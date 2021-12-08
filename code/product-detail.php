@@ -92,10 +92,11 @@ if (isset($_GET["id"])) {
 	// add to cart
 	if (isset($_POST["add_to_cart"])) {
 		$ok = 1;
-		if ($_POST['size'] == 0) {
-			$sizeError = "you must choose size!";
-			$ok = 0;
-		}
+		print_r($_POST);
+		// if ($_POST['size'] == 0) {
+		// 	$sizeError = "you must choose size!";
+		// 	$ok = 0;
+		// }
 		if ($ok == 1) {
 			if (isset($_SESSION['cart'])) {
 				$items = array_column($_SESSION["cart"], 'product_id');
@@ -253,10 +254,10 @@ if (isset($_GET["id"])) {
 
 									<div class="size-204 respon6-next">
 										<div class="rs1-select2 bor8 bg0">
-											<select <?php echo $row['product_size'] == NULL ? "disabled" : ''; ?> class="js-select2" name="size">
-												<option value="<?php echo $row['product_size'] == NULL ? "-" : 0; ?>">Choose an option</option>
+											<select <?php echo $row['product_size'] == "" ? "disabled" : ''; ?> class="js-select2" name="size">
+												<option value="<?php echo $row['product_size'] == "" ? "-" : 0; ?>">Choose an option</option>
 												<?php
-												if ($row['product_size'] != NULL) {
+												if ($row['product_size'] != "") {
 													$sizeStr = $row['product_size'];
 													echo $sizeStr;
 													$sizeArr = explode(',', $sizeStr);
@@ -384,7 +385,7 @@ if (isset($_GET["id"])) {
 														<?php echo $row["comment"];  ?>
 													</p>
 													<p class="stext-102 cl6">
-														<?php if ($row["comment_image"] != Null) { ?>
+														<?php if ($row["comment_image"] != "") { ?>
 															<img src="<?php echo $row["comment_image"];  ?>" style='width:300px; height:200px; ' alt="">
 														<?php } ?>
 													</p>
