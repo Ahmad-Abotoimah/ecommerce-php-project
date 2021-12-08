@@ -218,18 +218,6 @@ $results_per_page = 12;
 			$result = mysqli_query($conn, $sql);
 			$product = mysqli_fetch_all($result, MYSQLI_ASSOC);
 		}
-
-		//===================================Pages==========================================
-
-
-
-
-		// retrieve selected results from database and display them on page
-
-		// display the links to the pages
-
-		//===================================Pages==========================================
-
 		?>
 
 		<div class="row isotope-grid">
@@ -259,12 +247,12 @@ $results_per_page = 12;
 					<!-- Block2 -->
 					<div class="block2">
 						<a href="product-detail.php?id=<?php echo $val['product_id']; ?>">
-							<?php if (str_contains($val["product_tag"], "new")) { ?>
-								<div class="block2-pic hov-img0" data-label="New">
+							<?php if ($val["product_tag"] == "new") { ?>
+								<div class="block2-pic hov-img0 label-new" data-label="New">
 								<?php } else { ?>
 									<div class="block2-pic hov-img0">
 									<?php } ?>
-									<?php if (str_contains($val["product_tag"], "sales")) { ?>
+									<?php if ($val["product_tag"] == "sales") { ?>
 										<div style="width:15%;height:5vh;border-radius:50px;background-color:red;text-align:center;position:absolute ;padding-top:10px;color:white;font-weight:bold"> 50% </div>
 									<?php } ?>
 									<img src="<?php echo 'admin/' . $val['product_main_image']; ?>" alt="IMG-PRODUCT">
